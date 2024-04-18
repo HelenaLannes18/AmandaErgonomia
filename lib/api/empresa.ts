@@ -144,7 +144,7 @@ export async function createEmpresa(
         cnpj: cnpj,
         cidade: cidade,
         estado: estado,
-        userId: userId,
+        userId: "client_2fGo9gM8LbMpiHi4ptal1pcAHor",
         email: email,
         setor: setor,
         responsavel_tecnico: responsavel_tecnico,
