@@ -1,0 +1,282 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "cockroachdb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String
+  image         String?
+  email         String?   @unique
+  emailVerified DateTime?
+  token         String?   @unique
+  password      String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  sessions      Session[]
+  accounts      Account[]
+  empresas      Empresa[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  id         String   @id @default(cuid())
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Empresa {
+  id                              String         @id @default(uuid())
+  name                            String
+  email                           String?
+  responsavel_tecnico             String?
+  registro_responsavel_tecnico    String?
+  habilitacao_responsavel_tecnico String?
+  ramo_atividade                  String?
+  atividade_principal             String?
+  cnae                            String?
+  grau_risco                      String?
+  nome_gestor_contrato            String?
+  telefone_gestor_contrato        String?
+  email_gestor_contrato           String?
+  razao_social                    String?
+  ergonomista                     String?
+  ie                              String?
+  cep                             String?
+  setor                           String?
+  endereco                        String?
+  bairro                          String?
+  telefone                        String?
+  unidades                        Unidade[]
+  unidadeName                     String?
+  areaavaliadaName                String?
+  area_avaliadas                  Areaavaliada[]
+  cnpj                            String
+  cidade                          String?
+  estado                          String?
+  ergonomicas                     Ergonomica[]
+  riscos                          Risco[]
+  perigos                         Perigo[]
+  planos                          Plano[]
+  userId                          String
+  user                            User           @relation(fields: [userId], references: [id])
+  updatedAt                       DateTime       @updatedAt
+  createdAt                       DateTime       @default(now())
+  pdfs                            Pdf[]
+  excells                         Excell[]
+  historicos                      Historico[]
+
+  @@index([userId])
+}
+
+model Plano {
+  id               String        @id @default(uuid())
+  namePlano        String?
+  unidadeName      String?
+  areaavaliadaName String?
+  o_que_fazer      String?
+  legislacao       String?
+  origem_demanda   String?
+  onde             String?
+  porque           String?
+  responsavel      String?
+  quando           String?
+  prazo            String?
+  previsao_termino DateTime?
+  termino_real     DateTime?
+  status           String?
+  evidencia        String?
+  empresaId        String?
+  empresa          Empresa?      @relation(fields: [empresaId], references: [id])
+  area_avaliadaId  String?
+  area_avaliada    Areaavaliada? @relation(fields: [area_avaliadaId], references: [id])
+  unidadeId        String?
+  unidade          Unidade?      @relation(fields: [unidadeId], references: [id])
+  updatedAt        DateTime      @updatedAt
+  createdAt        DateTime      @default(now())
+}
+
+model Risco {
+  id                                 String        @id @default(uuid())
+  nameRisco                          String?
+  unidadeName                        String?
+  areaavaliadaName                   String?
+  sugestacao_recomendacao            String?
+  medidas_controle                   String?
+  necessita_aet                      Boolean?
+  classificacao_riscos_probabilidade String?
+  classificacao_riscos_continuacao   String?
+  classificacao_riscos_severidade    String?
+  classificacao_riscos_classificacao String?
+  images                             Image[]
+  empresaId                          String?
+  empresa                            Empresa?      @relation(fields: [empresaId], references: [id])
+  area_avaliadaId                    String?
+  area_avaliada                      Areaavaliada? @relation(fields: [area_avaliadaId], references: [id])
+  unidadeId                          String?
+  unidade                            Unidade?      @relation(fields: [unidadeId], references: [id])
+  createdAt                          DateTime      @default(now())
+  updatedAt                          DateTime      @updatedAt
+}
+
+model Perigo {
+  id                           String        @id @default(uuid())
+  namePerigo                   String?
+  unidadeName                  String?
+  areaavaliadaName             String?
+  fase_levantamento_preliminar String?
+  aspectos_ergonomico          String?
+  fator                        String?
+  fontes                       String?
+  ha_pergios_externos          String?
+  possiveis_lesoes             String?
+  empresaId                    String?
+  empresa                      Empresa?      @relation(fields: [empresaId], references: [id])
+  area_avaliadaId              String?
+  area_avaliada                Areaavaliada? @relation(fields: [area_avaliadaId], references: [id])
+  unidadeId                    String?
+  unidade                      Unidade?      @relation(fields: [unidadeId], references: [id])
+  createdAt                    DateTime      @default(now())
+  updatedAt                    DateTime      @updatedAt
+}
+
+model Historico {
+  id         String    @id @default(uuid())
+  empresaId  String?
+  empresa    Empresa?  @relation(fields: [empresaId], references: [id])
+  revisao    String?
+  data       DateTime?
+  executado  String?
+  verificado String?
+  descricao  String?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+}
+
+model Image {
+  id        String   @id @default(uuid())
+  riscoId   String
+  risco     Risco    @relation(fields: [riscoId], references: [id], onDelete: Cascade)
+  url       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([riscoId])
+}
+
+model Areaavaliada {
+  id           String       @id @default(uuid())
+  nameAvaliada String       @default("")
+  empresaId    String?
+  ergonomicas  Ergonomica[]
+  empresa      Empresa?     @relation(fields: [empresaId], references: [id])
+  pdfs         Pdf[]
+  excells      Excell[]
+  planos       Plano[]
+  riscos       Risco[]
+  perigos      Perigo[]
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+model Unidade {
+  id          String       @id @default(uuid())
+  nameUnidade String       @default("")
+  empresaId   String?
+  empresa     Empresa?     @relation(fields: [empresaId], references: [id])
+  ergonimicas Ergonomica[]
+  pdfs        Pdf[]
+  excells     Excell[]
+  planos      Plano[]
+  riscos      Risco[]
+  perigos     Perigo[]
+  updatedAt   DateTime     @updatedAt
+  createdAt   DateTime     @default(now())
+}
+
+model Ergonomica {
+  id                            String        @id @default(uuid())
+  nameAEP                       String?
+  unidadeName                   String?
+  areaavaliadaName              String?
+  empresaId                     String?
+  empresa                       Empresa?      @relation(fields: [empresaId], references: [id])
+  area_avaliadaId               String?
+  area_avaliada                 Areaavaliada? @relation(fields: [area_avaliadaId], references: [id])
+  unidadeId                     String?
+  unidade                       Unidade?      @relation(fields: [unidadeId], references: [id])
+  data_elaboracao               DateTime?
+  revisao_documento             DateTime?
+  jornada_trabalho              String?
+  cargo                         String?
+  tipo_atividade                String?
+  variacao_turno                String? // trocar String
+  trabalho_noturno              String?
+  descricao_ambiente_trabalho   String?
+  numero_trabalhadores_expostos Int?
+  tarefa_prescrita              String?
+  tarefa_real                   String?
+  consideracoes_avaliador       String?
+  posto_trabalho                String?
+  ergonomista_responsavel       String?       @default("Amanda Viviane Muniz Rodrigues - CREFITO 4/127866F")
+  createdAt                     DateTime      @default(now())
+  updatedAt                     DateTime      @updatedAt
+}
+
+model Pdf {
+  id              String        @id @default(uuid())
+  empresaId       String?
+  empresa         Empresa?      @relation(fields: [empresaId], references: [id])
+  area_avaliadaId String?
+  area_avaliada   Areaavaliada? @relation(fields: [area_avaliadaId], references: [id])
+  unidadeId       String?
+  unidade         Unidade?      @relation(fields: [unidadeId], references: [id])
+  url             String?
+}
+
+model Excell {
+  id              String        @id @default(uuid())
+  empresaId       String?
+  empresa         Empresa?      @relation(fields: [empresaId], references: [id])
+  area_avaliadaId String?
+  area_avaliada   Areaavaliada? @relation(fields: [area_avaliadaId], references: [id])
+  unidadeId       String?
+  unidade         Unidade?      @relation(fields: [unidadeId], references: [id])
+  url             String?
+}

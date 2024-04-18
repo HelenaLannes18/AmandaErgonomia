@@ -26,11 +26,11 @@ export default function Header() {
       <div className="grow" />
       <SignedIn>
         <div className="hidden sm:block">
-          <OrganizationSwitcher afterCreateOrganizationUrl="/dashboard" />
+          <OrganizationSwitcher afterCreateOrganizationUrl="/empresa" />
         </div>
         <div className="block sm:hidden">
           <OrganizationSwitcher
-            afterCreateOrganizationUrl="/dashboard"
+            afterCreateOrganizationUrl="/empresa"
             appearance={{
               elements: {
                 organizationSwitcherTriggerIcon: `hidden`,
