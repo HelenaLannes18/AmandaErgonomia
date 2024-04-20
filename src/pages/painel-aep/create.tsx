@@ -238,8 +238,7 @@ export default function AvaliacaoPreliminar() {
         const revisaoDocumentoFormatado = values.revisao_documento + ':00Z';
         const dataElaboracaoFormatado = values.data_elaboracao + ':00Z';
         try {
-            // Convertendo numero_trabalhadores_expostos para número
-            const numeroTrabalhadoresExpostos = parseInt(values.numero_trabalhadores_expostos);
+
 
             const response = await fetch("/api/aep", {
                 method: HttpMethod.POST,
@@ -255,7 +254,7 @@ export default function AvaliacaoPreliminar() {
                     variacao_turno: selectedRadioValue,
                     trabalho_noturno: selectedRadioValue3,
                     descricao_ambiente_trabalho: values.descricao_ambiente_trabalho,
-                    numero_trabalhadores_expostos: numeroTrabalhadoresExpostos,
+                    numero_trabalhadores_expostos: values.numero_trabalhadores_expostos,
                     tarefa_prescrita: values.tarefa_prescrita,
                     tarefa_real: values.tarefa_real,
                     consideracoes_avaliador: values.consideracoes_avaliador,
@@ -267,7 +266,7 @@ export default function AvaliacaoPreliminar() {
                 })
             });
             toast.success("AEP Cadastrado!");
-            router.back();
+            // router.back();
             console.log(await response.json());
 
             if (!response.ok) {
@@ -315,7 +314,7 @@ export default function AvaliacaoPreliminar() {
                     register6={register("jornada_trabalho")}
                     error6={formState.errors.jornada_trabalho?.message}
 
-                    type7={"number"}
+                    type7={"numero_trabalhadores_expostos"}
                     isInvalid7={!!formState.errors.numero_trabalhadores_expostos}
                     register7={register("numero_trabalhadores_expostos")}
                     error7={formState.errors.numero_trabalhadores_expostos?.message}

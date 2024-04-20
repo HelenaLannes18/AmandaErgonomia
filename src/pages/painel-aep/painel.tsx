@@ -37,7 +37,7 @@ export default function Home({ ergonomicas }) {
     )
 
     async function createErgonomica() {
-        router.push(`/painel-aep/create`)
+        router.push(`/painel-aep/create?empresaId=${empresaId}`)
     }
 
     const [currentPage, setCurrentPage] = useState<number>(0)

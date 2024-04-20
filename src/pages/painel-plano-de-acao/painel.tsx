@@ -38,7 +38,7 @@ export default function Home({ planos }) {
     )
 
     async function createPlano() {
-        router.push(`/painel-plano-de-acao/create`)
+        router.push(`/painel-plano-de-acao/create?empresaId=${empresaId}`)
     }
 
     const [currentPage, setCurrentPage] = useState<number>(0)
@@ -127,48 +127,7 @@ export default function Home({ planos }) {
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)} />
                 </InputGroup>
-                {/* <ButtonPage text={"Planos"} href={"/painel-planos/identificacao-de-planos"} w={{ xl: "10%", lg: "15%" }} mt={{ xl: "5%", lg: "9%", md: "2%", xxs: "3%" }} />
-                <ButtonPage text={"Riscos"} href={"/painel-riscos/controle-dos-riscos"} w={{ xl: "10%", lg: "15%" }} mt={{ xl: "5%", lg: "9%", md: "2%", xxs: "3%" }} /> */}
-                <Link
-                    as={NextLink}
-                    href={"/painel-planos"}
-                >
-                    <Button
-                        as="button"
-                        mt={"10%"}
-                        w={{ md: "13%", sm: "23%" }}
-                        bg={"rgba(70, 83, 100, 1.00)"}
-                        borderRadius={"8px"}
-                        color={"#fff"}
-                        fontSize={"16px"}
-                        _hover={{
-                            bg: "rgba(70, 83, 100, 1.00)"
-                        }}
-                    >
-                        Planos
-                    </Button>
-                </Link>
 
-                <Link
-                    as={NextLink}
-                    href={"/painel-planos"}
-                >
-                    <Button
-                        as="button"
-                        mt={"10%"}
-                        w={{ md: "13%", sm: "23%" }}
-                        bg={"rgba(70, 83, 100, 1.00)"}
-                        borderRadius={"8px"}
-                        color={"#fff"}
-                        fontSize={"16px"}
-                        _hover={{
-                            bg: "rgba(70, 83, 100, 1.00)"
-                        }}
-                    >
-                        Riscos
-                    </Button>
-
-                </Link>
 
                 <ButtonAd text={"Cadastrar novo Plano"} mt={"10%"} onClick={() => {
                     setCreatingPlano(true)

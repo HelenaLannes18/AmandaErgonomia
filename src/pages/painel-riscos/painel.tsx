@@ -38,7 +38,7 @@ export default function Home({ riscos }) {
     )
 
     async function createRisco() {
-        router.push(`/painel-riscos/create`)
+        router.push(`/painel-riscos/create?empresaId=${empresaId}`)
     }
 
     const [currentPage, setCurrentPage] = useState<number>(0)

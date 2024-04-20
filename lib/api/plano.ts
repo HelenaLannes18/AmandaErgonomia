@@ -118,26 +118,7 @@ export async function createPlano(
 ): Promise<void | NextApiResponse<{
   planoId: string;
 }>> {
-  // const emailuser = session?.user?.email;
-  // if (typeof emailuser !== 'string' || !emailuser.trim()) {
-  //   return res
-  //     .status(400)
-  //     .end('Bad request emailuser query parameter is not valid.');
-  // }
 
-  // const user = await prisma.user.findUnique({
-  //   where: {
-  //     email: emailuser,
-  //   },
-  // });
-
-  // const userId = user?.id;
-
-  // if (typeof userId !== 'string' || !userId.trim()) {
-  //   return res
-  //     .status(400)
-  //     .end('Bad request userID query parameter is not valid.');
-  // }
 
   const {
     o_que_fazer,

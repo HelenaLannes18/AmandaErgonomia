@@ -38,7 +38,7 @@ export default function Home({ perigos }) {
     )
 
     async function createPerigo() {
-        router.push(`/painel-perigos/create`)
+        router.push(`/painel-perigos/create?empresaId=${empresaId}`)
     }
 
     const [currentPage, setCurrentPage] = useState<number>(0)
