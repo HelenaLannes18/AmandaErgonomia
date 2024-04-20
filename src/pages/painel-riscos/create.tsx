@@ -158,7 +158,7 @@ export default function ControleDosRiscos() {
 
     const [isLoading, setIsLoading] = useState(false);
     const [options, setOptions] = useState<Option[]>([]);
-    const [valueSelect, setValueSelect] = useState<Option[] | null>(null);
+    const [valueSelect, setValueSelect] = useState<Option[] | null>([]);
 
     //unidade
     const [isLoading2, setIsLoading2] = useState(false);
@@ -270,7 +270,7 @@ export default function ControleDosRiscos() {
                     }));
                     setOptions(newOptions);
                     // setValueSelect(newOptions);
-                    setValueSelect(null);
+
                 } else {
                     const option = {
                         label: empresa.areaavaliadaName,
@@ -296,6 +296,7 @@ export default function ControleDosRiscos() {
                     }));
                     setOptions2(newOptions);
                     // setValueSelect2(newOptions);
+
                 } else {
                     const option = {
                         label: empresa.unidadeName,

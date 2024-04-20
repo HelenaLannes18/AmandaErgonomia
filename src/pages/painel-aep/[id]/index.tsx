@@ -438,7 +438,7 @@ export default function AvaliacaoPreliminar() {
         } finally {
             setPublishing(false);
             toast.success("Empresa editada com sucesso!")
-            router.back();
+            router.push(`/painel-aep/painel`)
         }
     }
 

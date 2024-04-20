@@ -204,9 +204,9 @@ export default function Home({ empresas }) {
                         <Tbody>
                             {searchTerm ? (
                                 searchResults?.map((item) => (
-                                    <Tr color={"#E9ECEF"} fontSize={'14px'} key={"qwdwdwd"}>
+                                    <Tr color={"#E9ECEF"} fontSize={'14px'} key={item.id}>
                                         <Td color={"#525F7F"}>
-                                            <Link href={`/empresa/qwdwdwd`}>{item.name}</Link>
+                                            <Link href={`/painel-riscos/${item.id}`}>{item.name}</Link>
                                         </Td>
                                         <Td
                                             textAlign={"center"}
@@ -218,18 +218,16 @@ export default function Home({ empresas }) {
                                             {format(item.createdAt, 'yyyy-MM-dd HH:mm:ss')}
                                         </Td>
                                         <Td color={"#525F7F"} textAlign={"center"}><ButtonActions as={FiEye}
-                                        // onClick={EditRedirect(item.id)} 
-                                        /> <ButtonActions as={FiEdit2}
-                                            //  onClick={EditRedirect(item.id)}
-                                            /> <ButtonActions as={FiTrash2} onClick={() => handleDeleteClick("qwdwdwd")} /></Td>
+                                            onClick={EditRedirect(item.id)}
+                                        /> </Td>
                                     </Tr>
                                 ))
                             ) : items ? (
                                 items.length > 0 ? (
                                     items.map((item) => (
-                                        <Tr color={"#E9ECEF"} fontSize={'14px'} key={"qwdwdwd"}>
+                                        <Tr color={"#E9ECEF"} fontSize={'14px'} key={item.id}>
                                             <Td color={"#525F7F"}>
-                                                <Link href={`/painel-riscos/qwdwdwd`}>{item.name}</Link>
+                                                <Link href={`/painel-riscos/${item.id}`}>{item.name}</Link>
                                             </Td>
                                             <Td
                                                 textAlign={"center"}
@@ -241,10 +239,8 @@ export default function Home({ empresas }) {
                                                 {format(item.createdAt, 'dd-MM-yyyy HH:mm:ss')}
                                             </Td>
                                             <Td color={"#525F7F"} textAlign={"center"}><ButtonActions as={FiEye}
-                                                onClick={() => EditRedirect("qwdwdwd")}
-                                            /> <ButtonActions as={FiEdit2}
-                                                onClick={() => EditRedirect("qwdwdwd")}
-                                                /> <ButtonActions as={FiTrash2} onClick={() => handleDeleteClick("qwdwdwd")} /></Td>
+                                                onClick={() => EditRedirect(item.id)}
+                                            /> </Td>
                                         </Tr>
                                     ))
                                 ) : (

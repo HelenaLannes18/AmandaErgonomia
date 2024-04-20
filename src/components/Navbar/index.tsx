@@ -154,9 +154,9 @@ export function Navbar({ title, children }: NavbarProps) {
                             <Stack mt={"45%"}>
                                 <TitleSidebar title={'Área Administrativa'} />
                                 <SideSection href="/" text="Painel Administrativo" icone={MdHome} />
-                                <SideSection href="/painel-aep/painel" text="AEP" icone={MdEvent} />
-                                <SideSection href="/painel-perigos/painel" text="Cadastro de Perigos e Riscos" icone={MdGroup} />
-                                <SideSection href="/painel-plano-de-acao/painel" text="Plano de Ação" icone={MdAssignment} />
+                                <SideSection href="/painel-aep" text="AEP" icone={MdEvent} />
+                                <SideSection href="/painel-perigos" text="Cadastro de Perigos e Riscos" icone={MdGroup} />
+                                <SideSection href="/painel-plano-de-acao" text="Plano de Ação" icone={MdAssignment} />
                                 <SideSection href="/painel-pdf" text="PDF" icone={FaRegFilePdf} />
                                 <SideSection href="/painel-excell" text="Excell" icone={PiMicrosoftExcelLogoDuotone} />
                             </Stack>

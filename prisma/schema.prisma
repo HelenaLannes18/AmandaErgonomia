@@ -139,7 +139,7 @@ model Risco {
   areaavaliadaName                   String?
   sugestacao_recomendacao            String?
   medidas_controle                   String?
-  necessita_aet                      Boolean?
+  necessita_aet                      String?
   classificacao_riscos_probabilidade String?
   classificacao_riscos_continuacao   String?
   classificacao_riscos_severidade    String?
@@ -249,7 +249,7 @@ model Ergonomica {
   variacao_turno                String? // trocar String
   trabalho_noturno              String?
   descricao_ambiente_trabalho   String?
-  numero_trabalhadores_expostos Int?
+  numero_trabalhadores_expostos String?
   tarefa_prescrita              String?
   tarefa_real                   String?
   consideracoes_avaliador       String?

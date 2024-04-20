@@ -11,7 +11,6 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function post(req: NextApiRequest, res: NextApiResponse) {
   //@ts-ignore
-  const session = await unstable_getServerSession(req, res);
   //   if (!session) return res.status(401).end();
 
   switch (req.method) {

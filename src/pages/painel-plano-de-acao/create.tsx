@@ -234,7 +234,7 @@ export default function PlanodeAcao() {
                 })
             })
             toast.success("Plano Cadastrado!")
-            router.push('/painel-plano-de-acao')
+            router.push('/painel-plano-de-acao/painel')
             console.log(response.json())
 
             if (!response.ok) {

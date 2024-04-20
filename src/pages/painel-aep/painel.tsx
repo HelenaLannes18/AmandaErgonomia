@@ -30,10 +30,9 @@ export default function Home({ ergonomicas }) {
     const [deletingErgonomica, setDeletingErgonomica] = useState(false)
 
     const router = useRouter();
-    const { id: ergonomicaId } = router.query
-
+    const { empresaId } = router.query;
     const { data } = useSWR<ErgonomicaData>(
-        `/api/aep`,
+        `/api/aep?empresaId=${empresaId}`,
         fetcher,
     )
 
@@ -64,7 +63,7 @@ export default function Home({ ergonomicas }) {
             console.error(error)
         } finally {
             setDeletingErgonomica(false);
-            // window.location.reload()
+            window.location.reload()
         }
     }
 
@@ -82,7 +81,7 @@ export default function Home({ ergonomicas }) {
 
     useEffect(() => {
         const searchApi = async () => {
-            const response = await fetch(`/api/aep?search=${searchTerm}`);
+            const response = await fetch(`/api/aep?search=${searchTerm}&empresaId=${empresaId}`);
             const data = await response.json();
             setSearchResults(data)
         }
@@ -129,7 +128,7 @@ export default function Home({ ergonomicas }) {
                 </InputGroup>
 
 
-                <ButtonAd text={"Cadastrar nova Ergonomica"} mt={"10%"} onClick={() => {
+                <ButtonAd text={"Cadastrar novo AEP"} mt={"10%"} onClick={() => {
                     setCreatingErgonomica(true)
                     createErgonomica()
                 }} />

@@ -22,10 +22,16 @@ export async function getErgonomica(
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void | NextApiResponse<AllErgonomicas>> {
-  const { ergonomicaId } = req.query;
+  const { ergonomicaId, empresaId } = req.query;
 
   if (Array.isArray(ergonomicaId))
     return res.status(400).end('Bad request. Query parameters are not valid.');
+
+  if (typeof empresaId !== 'string' || !empresaId.trim()) {
+    return res
+      .status(400)
+      .end('Bad request. empresaId query parameter is not valid.');
+  }
 
   try {
     if (ergonomicaId) {
@@ -33,11 +39,16 @@ export async function getErgonomica(
         where: {
           id: ergonomicaId,
         },
+        
       });
       return res.status(200).json(ergonomica);
     }
 
-    const ergonomicas = await prisma.ergonomica.findMany({});
+    const ergonomicas = await prisma.ergonomica.findMany({
+      where: {
+        empresaId: empresaId
+      }
+    });
 
     return res.status(200).json({
       ergonomicas,
@@ -60,7 +71,7 @@ export async function getErgonomicasWithSearch(
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void | NextApiResponse<Array<Ergonomica>>> {
-  const { search, ergonomicaId } = req.query;
+  const { search, ergonomicaId, empresaId } = req.query;
 
   if (typeof search !== 'string' || !search.trim()) {
     return res
@@ -71,6 +82,12 @@ export async function getErgonomicasWithSearch(
   if (Array.isArray(ergonomicaId))
     return res.status(400).end('Bad request. Query parameters are not valid.');
 
+  if (typeof empresaId !== 'string' || !empresaId.trim()) {
+    return res
+      .status(400)
+      .end('Bad request. empresaId query parameter is not valid.');
+  }
+
   try {
     const ergonomicas = await prisma.ergonomica.findMany({
       where: {
@@ -78,6 +95,7 @@ export async function getErgonomicasWithSearch(
           contains: search,
           mode: 'insensitive',
         },
+        empresaId: empresaId
       },
     });
     return res.status(200).json(ergonomicas);

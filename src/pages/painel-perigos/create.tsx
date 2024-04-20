@@ -257,7 +257,7 @@ export default function IdentificacaoDeRiscos() {
                 })
             })
             toast.success("Perigo Cadastrado!")
-            router.push('/painel-perigos')
+            router.push('/painel-perigos/painel')
             console.log(response.json())
 
             if (!response.ok) {

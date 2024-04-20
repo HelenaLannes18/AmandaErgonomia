@@ -95,7 +95,7 @@ export default function Home({ empresas }) {
     }, [searchTerm])
 
     const EditRedirect = (empresaId: string) => {
-        router.push(`/empresa/${empresaId}`)
+        router.push(`/painel-peigos/painel?empresaId=${empresaId}`)
     }
 
     return (
@@ -219,10 +219,8 @@ export default function Home({ empresas }) {
                                             {format(item.createdAt, 'yyyy-MM-dd HH:mm:ss')}
                                         </Td>
                                         <Td color={"#525F7F"} textAlign={"center"}><ButtonActions as={FiEye}
-                                        // onClick={EditRedirect(item.id)} 
-                                        /> <ButtonActions as={FiEdit2}
-                                            //  onClick={EditRedirect(item.id)}
-                                            /> <ButtonActions as={FiTrash2} onClick={() => handleDeleteClick("qwdwdwd")} /></Td>
+                                            onClick={EditRedirect(item.id)}
+                                        /> </Td>
                                     </Tr>
                                 ))
                             ) : items ? (
@@ -243,9 +241,7 @@ export default function Home({ empresas }) {
                                             </Td>
                                             <Td color={"#525F7F"} textAlign={"center"}><ButtonActions as={FiEye}
                                                 onClick={() => EditRedirect("qwdwdwd")}
-                                            /> <ButtonActions as={FiEdit2}
-                                                onClick={() => EditRedirect("qwdwdwd")}
-                                                /> <ButtonActions as={FiTrash2} onClick={() => handleDeleteClick("qwdwdwd")} /></Td>
+                                            /> </Td>
                                         </Tr>
                                     ))
                                 ) : (

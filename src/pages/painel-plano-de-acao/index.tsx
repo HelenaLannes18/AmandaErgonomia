@@ -107,7 +107,7 @@ export default function Home({ empresas }) {
     }, [searchTerm])
 
     const EditRedirect = (empresaId: string) => {
-        router.push(`/empresas/${empresaId}`)
+        router.push(`/painel-plano-de-acao/painel?empresaId=${empresaId}`)
     }
     return (
         <Main title2={"Painel Administrativo de Plano de Ação"} title="" w={undefined} path={""} altText={""} tamh={0} tamw={0}>
@@ -176,10 +176,8 @@ export default function Home({ empresas }) {
                                             {format(item.createdAt, 'dd-MM-yyyy HH:mm:ss')}
                                         </Td>
                                         <Td color={"#525F7F"} textAlign={"center"}><ButtonActions as={FiEye}
-                                        // onClick={EditRedirect(item.id)} 
-                                        /> <ButtonActions as={FiEdit2}
-                                            //  onClick={EditRedirect(item.id)}
-                                            /> <ButtonActions as={FiTrash2} onClick={() => handleDeleteClick(item.id)} /></Td>
+                                            onClick={EditRedirect(item.id)}
+                                        /></Td>
                                     </Tr>
                                 ))
                             ) : items ? (
@@ -199,10 +197,8 @@ export default function Home({ empresas }) {
                                                 {format(item.createdAt, 'dd-MM-yyyy HH:mm:ss')}
                                             </Td>
                                             <Td color={"#525F7F"} textAlign={"center"}><ButtonActions as={FiEye}
-                                            // onClick={EditRedirect(item.id)} 
-                                            /> <ButtonActions as={FiEdit2}
-                                                // onClick={EditRedirect(item.id)}
-                                                /> <ButtonActions as={FiTrash2} onClick={() => handleDeleteClick(item.id)} /></Td>
+                                                onClick={EditRedirect(item.id)}
+                                            /> </Td>
                                         </Tr>
                                     ))
                                 ) : (

@@ -58,9 +58,9 @@ const Gallery = ({ photos, onClick }) => {
                                         // boxSize='150px' 
                                         // layout='fill'
                                         //@ts-ignore
-                                        width={"150px"}
+                                        width={150}
                                         //@ts-ignore
-                                        height={"150px"}
+                                        height={150}
                                         className="object-cover"
 
                                     />

@@ -30,15 +30,15 @@ export default function Home({ planos }) {
     const [deletingPlano, setDeletingPlano] = useState(false)
 
     const router = useRouter();
-    const { id: planoId } = router.query
+    const { empresaId } = router.query;
 
     const { data } = useSWR<PlanoData>(
-        `/api/plano`,
+        `/api/plano?empresaId=${empresaId}`,
         fetcher,
     )
 
     async function createPlano() {
-        router.push(`/painel-planos/create`)
+        router.push(`/painel-plano-de-acao/create`)
     }
 
     const [currentPage, setCurrentPage] = useState<number>(0)
@@ -64,7 +64,7 @@ export default function Home({ planos }) {
             console.error(error)
         } finally {
             setDeletingPlano(false);
-            // window.location.reload()
+            window.location.reload()
         }
     }
 
@@ -82,7 +82,7 @@ export default function Home({ planos }) {
 
     useEffect(() => {
         const searchApi = async () => {
-            const response = await fetch(`/api/plano?search=${searchTerm}`);
+            const response = await fetch(`/api/plano?search=${searchTerm}&empresaId=${empresaId}`);
             const data = await response.json();
             setSearchResults(data)
         }

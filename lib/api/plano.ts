@@ -22,10 +22,16 @@ export async function getPlano(
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void | NextApiResponse<AllPlanos>> {
-  const { planoId } = req.query;
+  const { planoId, empresaId } = req.query;
 
   if (Array.isArray(planoId))
     return res.status(400).end('Bad request. Query parameters are not valid.');
+
+  if (typeof empresaId !== 'string' || !empresaId.trim()) {
+    return res
+      .status(400)
+      .end('Bad request. empresaId query parameter is not valid.');
+  }
 
   try {
     if (planoId) {
@@ -39,7 +45,7 @@ export async function getPlano(
 
     const planos = await prisma.plano.findMany({
       where: {
-        empresaId: '8bf372b9-b553-4c80-9c65-956d6fef3661',
+        empresaId: empresaId,
       },
     });
 
@@ -64,12 +70,18 @@ export async function getPlanosWithSearch(
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void | NextApiResponse<Array<Plano>>> {
-  const { search, planoId } = req.query;
+  const { search, planoId, empresaId } = req.query;
 
   if (typeof search !== 'string' || !search.trim()) {
     return res
       .status(400)
       .end('Bad request. Search query parameter is not valid.');
+  }
+
+  if (typeof empresaId !== 'string' || !empresaId.trim()) {
+    return res
+      .status(400)
+      .end('Bad request. empresaId query parameter is not valid.');
   }
 
   if (Array.isArray(planoId))
@@ -82,6 +94,7 @@ export async function getPlanosWithSearch(
           contains: search,
           mode: 'insensitive',
         },
+        empresaId: empresaId
       },
     });
     return res.status(200).json(planos);

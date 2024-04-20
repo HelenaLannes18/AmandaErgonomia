@@ -174,9 +174,7 @@ export default function Home({ empresas }) {
                                         </Td>
                                         <Td color={"#525F7F"} textAlign={"center"}><ButtonActions as={FiEye}
                                         // onClick={EditRedirect(item.id)} 
-                                        /> <ButtonActions as={FiEdit2}
-                                            //  onClick={EditRedirect(item.id)}
-                                            /> <ButtonActions as={FiTrash2} onClick={() => handleDeleteClick(item.id)} /></Td>
+                                        /> </Td>
                                     </Tr>
                                 ))
                             ) : items ? (
@@ -197,9 +195,7 @@ export default function Home({ empresas }) {
                                             </Td>
                                             <Td color={"#525F7F"} textAlign={"center"}><ButtonActions as={FiEye}
                                                 onClick={() => EditRedirect(item.id)}
-                                            /> <ButtonActions as={FiEdit2}
-                                                onClick={() => EditRedirect(item.id)}
-                                                /> <ButtonActions as={FiTrash2} onClick={() => handleDeleteClick(item.id)} /></Td>
+                                            /> </Td>
                                         </Tr>
                                     ))
                                 ) : (

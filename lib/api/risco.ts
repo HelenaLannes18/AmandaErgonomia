@@ -22,7 +22,13 @@ export async function getRisco(
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void | NextApiResponse<AllRiscos>> {
-  const { riscoId } = req.query;
+  const { riscoId, empresaId } = req.query;
+
+  if (typeof empresaId !== 'string' || !empresaId.trim()) {
+    return res
+      .status(400)
+      .end('Bad request. empresaId query parameter is not valid.');
+  }
 
   if (Array.isArray(riscoId))
     return res.status(400).end('Bad request. Query parameters are not valid.');
@@ -39,7 +45,7 @@ export async function getRisco(
 
     const riscos = await prisma.risco.findMany({
       where: {
-        empresaId: '8bf372b9-b553-4c80-9c65-956d6fef3661',
+        empresaId: empresaId,
       },
     });
 
@@ -64,13 +70,21 @@ export async function getRiscosWithSearch(
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void | NextApiResponse<Array<Risco>>> {
-  const { search, riscoId } = req.query;
+  const { search, riscoId, empresaId } = req.query;
 
   if (typeof search !== 'string' || !search.trim()) {
     return res
       .status(400)
       .end('Bad request. Search query parameter is not valid.');
   }
+
+  
+  if (typeof empresaId !== 'string' || !empresaId.trim()) {
+    return res
+      .status(400)
+      .end('Bad request. empresaId query parameter is not valid.');
+  }
+
 
   if (Array.isArray(riscoId))
     return res.status(400).end('Bad request. Query parameters are not valid.');
@@ -82,6 +96,7 @@ export async function getRiscosWithSearch(
           contains: search,
           mode: 'insensitive',
         },
+        empresaId: empresaId
       },
     });
     return res.status(200).json(riscos);

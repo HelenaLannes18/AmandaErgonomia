@@ -30,10 +30,10 @@ export default function Home({ perigos }) {
     const [deletingPerigo, setDeletingPerigo] = useState(false)
 
     const router = useRouter();
-    const { id: perigoId } = router.query
+    const { empresaId } = router.query;
 
     const { data } = useSWR<PerigoData>(
-        `/api/perigo`,
+        `/api/perigo?empresaId=${empresaId}`,
         fetcher,
     )
 
@@ -64,7 +64,7 @@ export default function Home({ perigos }) {
             console.error(error)
         } finally {
             setDeletingPerigo(false);
-            // window.location.reload()
+            window.location.reload()
         }
     }
 
@@ -82,7 +82,7 @@ export default function Home({ perigos }) {
 
     useEffect(() => {
         const searchApi = async () => {
-            const response = await fetch(`/api/perigo?search=${searchTerm}`);
+            const response = await fetch(`/api/perigo?search=${searchTerm}&empresaId=${empresaId}`);
             const data = await response.json();
             setSearchResults(data)
         }

@@ -1006,7 +1006,7 @@ export function CardHistorico({
                                     <Td> <ButtonActions as={FiTrash2} onClick={() => handleDelete(historico.id)} /></Td>
                                 </Tr>
                             ))) : (
-                            "Nen"
+                            "Nenhum historico registrado ainda"
                         )}
 
                     </Tbody>

@@ -76,8 +76,10 @@ export default function Home() {
             if (!response.ok) {
                 const error = await response.text();
                 throw new Error(error);
+                router.push(`/empresa`);
             }
         } catch (error) {
+            router.push(`/empresa`);
             console.error(error);
         }
     };

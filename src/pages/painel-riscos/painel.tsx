@@ -30,10 +30,10 @@ export default function Home({ riscos }) {
     const [deletingRisco, setDeletingRisco] = useState(false)
 
     const router = useRouter();
-    const { id: riscoId } = router.query
+    const { empresaId } = router.query;
 
     const { data } = useSWR<RiscoData>(
-        `/api/risco`,
+        `/api/risco?empresaId=${empresaId}`,
         fetcher,
     )
 
@@ -64,7 +64,7 @@ export default function Home({ riscos }) {
             console.error(error)
         } finally {
             setDeletingRisco(false);
-            // window.location.reload()
+            window.location.reload()
         }
     }
 
@@ -82,7 +82,7 @@ export default function Home({ riscos }) {
 
     useEffect(() => {
         const searchApi = async () => {
-            const response = await fetch(`/api/risco?search=${searchTerm}`);
+            const response = await fetch(`/api/risco?search=${searchTerm}&empresaId=${empresaId}`);
             const data = await response.json();
             setSearchResults(data)
         }
