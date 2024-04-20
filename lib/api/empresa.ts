@@ -25,6 +25,7 @@ export async function getEmpresa(
   res: NextApiResponse
 ): Promise<void | NextApiResponse<AllEmpresas>> {
   const { empresaId } = req.query;
+  
 
   if (Array.isArray(empresaId))
     return res.status(400).end('Bad request. Query parameters are not valid.');
@@ -144,7 +145,7 @@ export async function createEmpresa(
         cnpj: cnpj,
         cidade: cidade,
         estado: estado,
-        userId: "user_2fBY8FV2DUR2uEj1bqCZGSM8LU5",
+        userId: "user_2fMsevUAJsqGpLjd8TqHZl7o6LH",
         email: email,
         setor: setor,
         responsavel_tecnico: responsavel_tecnico,
@@ -310,7 +311,7 @@ export async function updateEmpresa(
         cnpj: cnpj,
         cidade: cidade,
         estado: estado,
-        userId: "user_2fBY8FV2DUR2uEj1bqCZGSM8LU5",
+        userId: "user_2fMsevUAJsqGpLjd8TqHZl7o6LH",
         email: email,
         setor: setor,
         responsavel_tecnico: responsavel_tecnico,
