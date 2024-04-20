@@ -11,10 +11,28 @@ import { Loader } from "../../../components/Loader";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const formSchema = z.object({
+    name: z.string(),
+    images: z.object({ url: z.string() }).array(),
+    sugestacao_recomendacao: z.string(),
+    medidas_controle: z.string(),
+    necessita_aet: z.boolean().nullable(),
+    classificacao_riscos_probabilidade: z.string(),
+    classificacao_riscos_continuacao: z.string(),
+    classificacao_riscos_severidade: z.string(),
+    classificacao_riscos_classificacao: z.string(),
+    areaavaliadaName: z.string(),
+    unidadeName: z.string(),
+})
+
 
 interface RiscoData {
     nameEmpresa?: string;
-    images: object,
+    images: object[],
     sugestacao_recomendacao: string,
     medidas_controle: string,
     necessita_aet: boolean,
@@ -39,8 +57,8 @@ interface Option {
 }
 
 export default function IdentificacaoDeRiscos() {
-    const router = useRouter()
-    const { id: riscoId } = router.query
+    const router = useRouter();
+    const { id: riscoId } = router.query;
     const { empresaId } = router.query;
 
     const { data: risco, isValidating } = useSWR<RiscoData>(
@@ -69,24 +87,8 @@ export default function IdentificacaoDeRiscos() {
         }
     }, [risco?.empresaId]);
 
-    const [savedState, setSavedState] = useState(
-        risco
-            ? `Last saved at ${Intl.DateTimeFormat("en", { month: "short" }).format(
-                //@ts-ignore
-                new Date(risco.updatedAt)
-            )} ${Intl.DateTimeFormat("en", { day: "2-digit" }).format(
-                //@ts-ignore
-                new Date(risco.updatedAt)
-            )} ${Intl.DateTimeFormat("en", {
-                hour: "numeric",
-                minute: "numeric",
-                //@ts-ignore
-            }).format(new Date(risco.updatedAt))}`
-            : "Saving changes..."
-    );
-
     const [data, setData] = useState<RiscoData>({
-        images: [],
+        images: [], // Initialize as empty array
         sugestacao_recomendacao: "",
         medidas_controle: "",
         necessita_aet: false,
@@ -96,15 +98,16 @@ export default function IdentificacaoDeRiscos() {
         classificacao_riscos_classificacao: "",
         areaavaliadaName: "",
         unidadeName: "",
-    })
+    });
 
     useEffect(() => {
         if (risco) {
             setData({
-                images: risco.images ?? "",
+                ...data,
+                images: risco.images ?? [], // Set images from risco data
                 sugestacao_recomendacao: risco.sugestacao_recomendacao ?? "",
                 medidas_controle: risco.medidas_controle ?? "",
-                necessita_aet: risco.necessita_aet ?? "",
+                necessita_aet: risco.necessita_aet ?? false,
                 classificacao_riscos_probabilidade: risco.classificacao_riscos_probabilidade ?? "",
                 classificacao_riscos_continuacao: risco.classificacao_riscos_continuacao ?? "",
                 classificacao_riscos_severidade: risco.classificacao_riscos_severidade ?? "",
@@ -112,15 +115,11 @@ export default function IdentificacaoDeRiscos() {
                 areaavaliadaName: risco.areaavaliadaName ?? "",
                 unidadeName: risco.unidadeName ?? "",
             });
-
         }
     }, [risco]);
 
-
-
-
-    const [loading, setLoading] = useState(false)
-    const [listar, setListar] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const [listar, setListar] = useState(false);
     const [empresaOptions, setEmpresaOptions] = useState([]);
     const [necessitaaetString, setNecessitaaetString] = useState("");
 
@@ -137,14 +136,44 @@ export default function IdentificacaoDeRiscos() {
         fetchEmpresaOptions();
     }, [listar]);
 
+    const [savedState, setSavedState] = useState(
+        risco
+            ? `Last saved at ${Intl.DateTimeFormat("en", { month: "short" }).format(
+                //@ts-ignore
+                new Date(risco.updatedAt)
+            )} ${Intl.DateTimeFormat("en", { day: "2-digit" }).format(
+                //@ts-ignore
+                new Date(risco.updatedAt)
+            )} ${Intl.DateTimeFormat("en", {
+                hour: "numeric",
+                minute: "numeric",
+                //@ts-ignore
+            }).format(new Date(risco.updatedAt))}`
+            : "Saving changes..."
+    );
 
-    const [debouncedData] = useDebounce(data, 1000)
+    const [debouncedData] = useDebounce(data, 1000);
+
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            sugestacao_recomendacao: "",
+            medidas_controle: "",
+            necessita_aet: false,
+            classificacao_riscos_probabilidade: "",
+            classificacao_riscos_continuacao: "",
+            classificacao_riscos_severidade: "",
+            classificacao_riscos_classificacao: "",
+            images: [],
+            areaavaliadaName: "",
+            unidadeName: "",
+        }
+    })
 
     const createOption = (label: string) => ({
         label,
-        value: label.toLowerCase().replace(/\W/g, ''),
+        value: label.toLowerCase().replace(/\W/g, ""),
     });
-
 
     const [isLoading, setIsLoading] = useState(false);
     const [options, setOptions] = useState<Option[]>([]);
@@ -425,7 +454,7 @@ export default function IdentificacaoDeRiscos() {
                         images: data.images,
                         sugestacao_recomendacao: data.sugestacao_recomendacao,
                         medidas_controle: data.medidas_controle,
-                        necessita_aet: selectedBoolean === 'true',
+                        necessita_aet: selectedBoolean,
                         classificacao_riscos_probabilidade: valueSelect3?.map(item => item.value),
                         classificacao_riscos_continuacao: valueSelect4?.map(item => item.value),
                         classificacao_riscos_severidade: valueSelect5?.map(item => item.value),
@@ -537,146 +566,147 @@ export default function IdentificacaoDeRiscos() {
                 headers: {
                     "Content-Type": "application/json",
                 },
-
                 body: JSON.stringify({
                     id: riscoId,
-                    images: data.images,
+                    images: data.images, // Send the updated images
                     sugestacao_recomendacao: data.sugestacao_recomendacao,
                     medidas_controle: data.medidas_controle,
                     necessita_aet: data.necessita_aet,
-                    classificacao_riscos_probabilidade: valueSelect3?.map(item => item.value),
-                    classificacao_riscos_continuacao: valueSelect4?.map(item => item.value),
-                    classificacao_riscos_severidade: valueSelect5?.map(item => item.value),
-                    classificacao_riscos_classificacao: valueSelect6?.map(item => item.value),
-                    areaavaliadaName: valueSelect?.map(item => item.value),
-                    unidadeName: valueSelect2?.map(item => item.value),
+                    classificacao_riscos_probabilidade: valueSelect3?.map((item) => item.value),
+                    classificacao_riscos_continuacao: valueSelect4?.map((item) => item.value),
+                    classificacao_riscos_severidade: valueSelect5?.map((item) => item.value),
+                    classificacao_riscos_classificacao: valueSelect6?.map((item) => item.value),
+                    areaavaliadaName: valueSelect?.map((item) => item.value),
+                    unidadeName: valueSelect2?.map((item) => item.value),
                     empresaId: selectedOption2,
                 }),
-
-            }
-            );
+            });
 
             if (response.ok) {
                 mutate(`/api/risco?riscoId=${riscoId}`);
-
             }
         } catch (error) {
             console.error(error);
-
         } finally {
             setPublishing(false);
-            toast.success("risco editada com sucesso!")
-            router.back();
+            toast.success("risco editada com sucesso!");
+            // router.back();
         }
     }
 
-    if (isValidating)
-        return (
+    const deleteImage = (url: string) => {
+        setData({
+            ...data,
+            images: data.images.filter((image) => image.url !== url),
+        });
+    };
 
-            <Loader />
+    if (isValidating) {
+        return <Loader />;
+    } return (
+        <form>
+            <Main title={""} title2={"Identificação dos Riscos"} w={undefined} path={""} altText={""} tamh={0} tamw={0}>
+                <CardControleDosRiscos
 
-        );
-    return (
-        <Main title={""} title2={"Identificação dos Riscos"} w={undefined} path={""} altText={""} tamh={0} tamw={0}>
-            <CardControleDosRiscos
+                    type1={"sugestacao_recomendacao"}
+                    onChange1={(e: ChangeEvent<HTMLInputElement>) =>
+                        setData({
+                            ...data,
+                            sugestacao_recomendacao: e.target.value,
+                        })
+                    }
+                    name1={"sugestacao_recomendacao"} value1={data.sugestacao_recomendacao}
 
-                type1={"sugestacao_recomendacao"}
-                onChange1={(e: ChangeEvent<HTMLInputElement>) =>
-                    setData({
-                        ...data,
-                        sugestacao_recomendacao: e.target.value,
-                    })
-                }
-                name1={"sugestacao_recomendacao"} value1={data.sugestacao_recomendacao}
+                    type6={"medidas_controle"}
+                    onChange6={(e: ChangeEvent<HTMLInputElement>) =>
+                        setData({
+                            ...data,
+                            medidas_controle: e.target.value,
+                        })
+                    }
+                    name6={"medidas_controle"} value6={data.medidas_controle}
 
-                type6={"medidas_controle"}
-                onChange6={(e: ChangeEvent<HTMLInputElement>) =>
-                    setData({
-                        ...data,
-                        medidas_controle: e.target.value,
-                    })
-                }
-                name6={"medidas_controle"} value6={data.medidas_controle}
+                    type7={"classificacao_riscos_probabilidade"}
+                    onChange7={(e: ChangeEvent<HTMLInputElement>) =>
+                        setData({
+                            ...data,
+                            classificacao_riscos_probabilidade: e.target.value,
+                        })
+                    }
+                    name7={"classificacao_riscos_probabilidade"} value7={data.classificacao_riscos_probabilidade}
 
-                type7={"classificacao_riscos_probabilidade"}
-                onChange7={(e: ChangeEvent<HTMLInputElement>) =>
-                    setData({
-                        ...data,
-                        classificacao_riscos_probabilidade: e.target.value,
-                    })
-                }
-                name7={"classificacao_riscos_probabilidade"} value7={data.classificacao_riscos_probabilidade}
-
-                valueEmpresa={selectedOption2}
-                onChangeEmpresa={(e: any) => {
-                    setSelectedOption2(e.target.value);
-                }}
-                empresaOptions={empresaOptions}
+                    valueEmpresa={selectedOption2}
+                    onChangeEmpresa={(e: any) => {
+                        setSelectedOption2(e.target.value);
+                    }}
+                    empresaOptions={empresaOptions}
 
 
-                selectedRadioValue={necessitaaetString}
-                handleRadioChange={handleRadioChange3}
+                    selectedRadioValue={necessitaaetString}
+                    handleRadioChange={handleRadioChange3}
 
-                isLoading={isLoading}
-                //@ts-ignore
-                onChangeSelect={(newValue) => setValueSelect(newValue)}
-                handleCreate={handleCreate}
-                options={options}
-                valueSelect={valueSelect}
+                    isLoading={isLoading}
+                    //@ts-ignore
+                    onChangeSelect={(newValue) => setValueSelect(newValue)}
+                    handleCreate={handleCreate}
+                    options={options}
+                    valueSelect={valueSelect}
 
-                isLoading2={isLoading2}
-                //@ts-ignore
-                onChangeSelect2={(newValue) => setValueSelect2(newValue)}
-                handleCreate2={handleCreate2}
-                options2={options2}
-                valueSelect2={valueSelect2}
+                    isLoading2={isLoading2}
+                    //@ts-ignore
+                    onChangeSelect2={(newValue) => setValueSelect2(newValue)}
+                    handleCreate2={handleCreate2}
+                    options2={options2}
+                    valueSelect2={valueSelect2}
 
-                isLoading3={isLoading3}
-                //@ts-ignore
-                onChangeSelect3={(newValue) => setValueSelect3(newValue)}
-                handleCreate3={handleCreate3}
-                options3={options3}
-                valueSelect3={valueSelect3}
+                    isLoading3={isLoading3}
+                    //@ts-ignore
+                    onChangeSelect3={(newValue) => setValueSelect3(newValue)}
+                    handleCreate3={handleCreate3}
+                    options3={options3}
+                    valueSelect3={valueSelect3}
 
-                isLoading4={isLoading4}
-                //@ts-ignore
-                onChangeSelect4={(newValue) => setValueSelect4(newValue)}
-                handleCreate4={handleCreate4}
-                options4={options4}
-                valueSelect4={valueSelect4}
+                    isLoading4={isLoading4}
+                    //@ts-ignore
+                    onChangeSelect4={(newValue) => setValueSelect4(newValue)}
+                    handleCreate4={handleCreate4}
+                    options4={options4}
+                    valueSelect4={valueSelect4}
 
-                isLoading5={isLoading5}
-                //@ts-ignore
-                onChangeSelect5={(newValue) => setValueSelect5(newValue)}
-                handleCreate5={handleCreate5}
-                options5={options5}
-                valueSelect5={valueSelect5}
+                    isLoading5={isLoading5}
+                    //@ts-ignore
+                    onChangeSelect5={(newValue) => setValueSelect5(newValue)}
+                    handleCreate5={handleCreate5}
+                    options5={options5}
+                    valueSelect5={valueSelect5}
 
-                isLoading6={isLoading6}
-                //@ts-ignore
-                onChangeSelect6={(newValue) => setValueSelect6(newValue)}
-                handleCreate6={handleCreate6}
-                options6={options6}
-                valueSelect6={valueSelect6}
+                    isLoading6={isLoading6}
+                    //@ts-ignore
+                    onChangeSelect6={(newValue) => setValueSelect6(newValue)}
+                    handleCreate6={handleCreate6}
+                    options6={options6}
+                    valueSelect6={valueSelect6}
 
-                // valueImage={form.getValues('images').map((image) => image.url)}
-                // disabledImage={loading}
-                // onChangeImage={(url) => {
-                //     const updatedImages = [...form.getValues('images'), { url }];
-                //     form.setValue('images', updatedImages);
-                // }}
-                // onRemoveImage={(url) => {
-                //     const updatedImages = form.getValues('images').filter((current) => current.url !== url);
-                //     form.setValue('images', updatedImages);
-                // }}
-                photosImage={foto?.images ?? []}
-                onClickImage={""}
+                    valueImage={form.getValues('images').map((image) => image.url)}
+                    disabledImage={loading}
+                    onChangeImage={(url: any) => {
+                        const updatedImages = [...form.getValues('images'), { url }];
+                        form.setValue('images', updatedImages);
+                    }}
+                    onRemoveImage={(url: any) => {
+                        const updatedImages = form.getValues('images').filter((current) => current.url !== url);
+                        form.setValue('images', updatedImages);
+                    }}
+                    photosImage={form.watch('images')}
+                    // onClickImage={handleDeleteClick}
+                    onClick={async () => {
+                        await publish();
+                    }}
 
-                onClick={async () => {
-                    await publish();
-                }}
-            />
-        </Main>
+                />
+
+            </Main>
+        </form>
     )
 }
 

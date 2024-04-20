@@ -95,7 +95,7 @@ export default function Home({ empresas }) {
     }, [searchTerm])
 
     const EditRedirect = (empresaId: string) => {
-        router.push(`/empresa/${empresaId}`)
+        router.push(`/painel-riscos/painel?empresaId=${empresaId}`)
     }
 
     return (

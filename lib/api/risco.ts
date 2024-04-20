@@ -131,6 +131,7 @@ export async function createRisco(
     areaavaliadaName,
     unidadeName,
     images,
+    empresaId
   } = req.body;
 
   try {
@@ -160,6 +161,7 @@ export async function createRisco(
           classificacao_riscos_classificacaoString,
         unidadeName: unidadeString,
         areaavaliadaName: areasAvaliadasString,
+        empresaId: empresaId
       },
     });
 
@@ -275,6 +277,7 @@ export async function updateRisco(
     classificacao_riscos_continuacao,
     classificacao_riscos_severidade,
     classificacao_riscos_classificacao,
+    images
   } = req.body;
 
   try {
@@ -303,6 +306,19 @@ export async function updateRisco(
           classificacao_riscos_classificacaoString,
       },
     });
+    // Criar instância de imagem para cada URL de imagem
+    const imagesPromises = images.map(async (image: any) => {
+      await prisma.image.create({
+        data: {
+          url: image.url,
+          riscoId: riscoId,
+        },
+      });
+    });
+
+    // Aguardar todas as instâncias de imagem serem criadas
+    await Promise.all(imagesPromises);
+
     return res.status(200).json(risco);
   } catch (error) {
     console.error(error);

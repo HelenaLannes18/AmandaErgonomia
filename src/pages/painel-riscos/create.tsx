@@ -327,13 +327,14 @@ export default function ControleDosRiscos() {
                     sugestacao_recomendacao: values.sugestacao_recomendacao,
                     images: values.images,
                     medidas_controle: values.medidas_controle,
-                    necessita_aet: selectedBoolean === 'true',
+                    necessita_aet: selectedBoolean,
                     classificacao_riscos_probabilidade: valueSelect3?.map(item => item.value),
                     classificacao_riscos_continuacao: valueSelect4?.map(item => item.value),
                     classificacao_riscos_severidade: valueSelect5?.map(item => item.value),
                     classificacao_riscos_classificacao: valueSelect6?.map(item => item.value),
                     areaavaliadaName: valueSelect?.map(item => item.value),
                     unidadeName: valueSelect2?.map(item => item.value),
+
                 })
             })
             toast.success("Risco Cadastrado!")
