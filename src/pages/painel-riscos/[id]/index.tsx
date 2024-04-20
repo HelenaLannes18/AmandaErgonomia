@@ -597,6 +597,7 @@ export default function IdentificacaoDeRiscos() {
     const deleteImage = (url: string) => {
         setData({
             ...data,
+            //@ts-ignore
             images: data.images.filter((image) => image.url !== url),
         });
     };
