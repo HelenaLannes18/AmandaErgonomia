@@ -95,12 +95,41 @@ export default function Home({ empresas }) {
     }, [searchTerm])
 
     const EditRedirect = (empresaId: string) => {
-        router.push(`/painel-peigos/painel?empresaId=${empresaId}`)
+        router.push(`/painel-perigos/painel?empresaId=${empresaId}`)
     }
 
     return (
         <Main title2={"Painel Administrativo de Perigos"} title="" w={undefined} path={""} altText={""} tamh={0} tamw={0}>
 
+            <Stack
+                justify={"end"}
+                spacing={"2%"}
+                w={"100%"}
+            >
+                <InputGroup
+                    w={"50%"}
+                    mt={"10%"}
+                >
+                    <InputLeftElement
+                        // eslint-disable-next-line react/no-children-prop
+                        children={<MdSearch size={"22px"} />} />
+                    <Input
+                        type='text'
+                        bg={"white"}
+                        borderRadius={"6px"}
+                        fontSize={"16px"}
+                        fontWeight={400}
+                        boxShadow={"0px 1px 3px 0px rgba(50, 50, 93, 0.15), 0px 0px 1px 0px rgba(0, 0, 0, 0.02)"}
+                        _placeholder={{
+                            color: "#8898AA",
+                        }}
+                        placeholder='Pesquisar'
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)} />
+                </InputGroup>
+
+
+            </Stack>
 
 
 
@@ -129,9 +158,9 @@ export default function Home({ empresas }) {
                         <Tbody>
                             {searchTerm ? (
                                 searchResults?.map((item) => (
-                                    <Tr color={"#E9ECEF"} fontSize={'14px'} key={"qwdwdwd"}>
+                                    <Tr color={"#E9ECEF"} fontSize={'14px'} key={item.id}>
                                         <Td color={"#525F7F"}>
-                                            <Link href={`/empresa/qwdwdwd`}>{item.name}</Link>
+                                            <Link href={`/empresa/${item.id}`}>{item.name}</Link>
                                         </Td>
                                         <Td
                                             textAlign={"center"}
@@ -150,9 +179,9 @@ export default function Home({ empresas }) {
                             ) : items ? (
                                 items.length > 0 ? (
                                     items.map((item) => (
-                                        <Tr color={"#E9ECEF"} fontSize={'14px'} key={"qwdwdwd"}>
+                                        <Tr color={"#E9ECEF"} fontSize={'14px'} key={item.id}>
                                             <Td color={"#525F7F"}>
-                                                <Link href={`/painel-perigos/qwdwdwd`}>{item.name}</Link>
+                                                <Link href={`/painel-perigos/${item.id}`}>{item.name}</Link>
                                             </Td>
                                             <Td
                                                 textAlign={"center"}
@@ -164,7 +193,7 @@ export default function Home({ empresas }) {
                                                 {format(item.createdAt, 'dd-MM-yyyy HH:mm:ss')}
                                             </Td>
                                             <Td color={"#525F7F"} textAlign={"center"}><ButtonActions as={FiEye}
-                                                onClick={() => EditRedirect("qwdwdwd")}
+                                                onClick={() => EditRedirect(item.id)}
                                             /> </Td>
                                         </Tr>
                                     ))

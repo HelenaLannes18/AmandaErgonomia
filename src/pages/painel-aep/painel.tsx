@@ -94,7 +94,7 @@ export default function Home({ ergonomicas }) {
     }, [searchTerm])
 
     const EditRedirect = (ergonomicaId: string) => {
-        router.push(`/painel-aep/${ergonomicaId}`)
+        router.push(`/painel-aep/${ergonomicaId}?empresaId=${empresaId}`)
     }
 
     return (

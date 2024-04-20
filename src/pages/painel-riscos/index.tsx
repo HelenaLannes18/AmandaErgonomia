@@ -1,4 +1,4 @@
-import { Button, HStack, Input, InputGroup, InputLeftElement, Stack } from "@chakra-ui/react"
+import { Button, Input, InputGroup, InputLeftElement, Stack } from "@chakra-ui/react"
 
 import { ButtonAd } from "../../components/Button"
 import { ButtonPage } from "../../components/Button"
@@ -101,7 +101,35 @@ export default function Home({ empresas }) {
     return (
         <Main title2={"Painel Administrativo de Riscos"} title="" w={undefined} path={""} altText={""} tamh={0} tamw={0}>
 
+            <Stack
+                justify={"end"}
+                spacing={"2%"}
+                w={"100%"}
+            >
+                <InputGroup
+                    w={"50%"}
+                    mt={"10%"}
+                >
+                    <InputLeftElement
+                        // eslint-disable-next-line react/no-children-prop
+                        children={<MdSearch size={"22px"} />} />
+                    <Input
+                        type='text'
+                        bg={"white"}
+                        borderRadius={"6px"}
+                        fontSize={"16px"}
+                        fontWeight={400}
+                        boxShadow={"0px 1px 3px 0px rgba(50, 50, 93, 0.15), 0px 0px 1px 0px rgba(0, 0, 0, 0.02)"}
+                        _placeholder={{
+                            color: "#8898AA",
+                        }}
+                        placeholder='Pesquisar'
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)} />
+                </InputGroup>
 
+
+            </Stack>
 
 
 

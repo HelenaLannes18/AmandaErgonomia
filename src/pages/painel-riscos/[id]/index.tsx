@@ -41,9 +41,10 @@ interface Option {
 export default function IdentificacaoDeRiscos() {
     const router = useRouter()
     const { id: riscoId } = router.query
+    const { empresaId } = router.query;
 
     const { data: risco, isValidating } = useSWR<RiscoData>(
-        router.isReady && `/api/risco?riscoId=${riscoId}`,
+        router.isReady && `/api/risco?riscoId=${riscoId}&empresaId=${empresaId}`,
         fetcher,
         {
             dedupingInterval: 1000,

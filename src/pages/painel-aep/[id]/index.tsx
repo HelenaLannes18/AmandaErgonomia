@@ -39,9 +39,10 @@ interface Option {
 export default function AvaliacaoPreliminar() {
     const router = useRouter()
     const { id: ergonomicaId } = router.query
+    const { empresaId } = router.query;
 
     const { data: ergonomica, isValidating } = useSWR<ErgonomicaData>(
-        router.isReady && `/api/aep?ergonomicaId=${ergonomicaId}`,
+        router.isReady && `/api/aep?ergonomicaId=${ergonomicaId}&empresaId=${empresaId}`,
         fetcher,
         {
             dedupingInterval: 1000,
@@ -438,7 +439,7 @@ export default function AvaliacaoPreliminar() {
         } finally {
             setPublishing(false);
             toast.success("Empresa editada com sucesso!")
-            router.push(`/painel-aep/painel`)
+            router.push(`/painel-aep/painel?empresaId=${empresaId}`)
         }
     }
 

@@ -267,7 +267,7 @@ export default function AvaliacaoPreliminar() {
                 })
             });
             toast.success("AEP Cadastrado!");
-            router.push(`/painel-aep/painel`);
+            router.back();
             console.log(await response.json());
 
             if (!response.ok) {

@@ -34,9 +34,10 @@ interface Option {
 export default function IdentificacaoDePerigos() {
     const router = useRouter()
     const { id: perigoId } = router.query
+    const { empresaId } = router.query;
 
     const { data: perigo, isValidating } = useSWR<PerigoData>(
-        router.isReady && `/api/perigo?perigoId=${perigoId}`,
+        router.isReady && `/api/perigo?perigoId=${perigoId}&empresaId=${empresaId}`,
         fetcher,
         {
             dedupingInterval: 1000,

@@ -95,7 +95,7 @@ export default function Home({ riscos }) {
     }, [searchTerm])
 
     const EditRedirect = (riscoId: string) => {
-        router.push(`/painel-riscos/${riscoId}`)
+        router.push(`/painel-riscos/${riscoId}?empresaId=${empresaId}`)
     }
 
     return (

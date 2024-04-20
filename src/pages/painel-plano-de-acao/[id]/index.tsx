@@ -39,9 +39,10 @@ interface Option {
 export default function Home() {
     const router = useRouter()
     const { id: planoId } = router.query
+    const { empresaId } = router.query;
 
     const { data: plano, isValidating } = useSWR<PlanoData>(
-        router.isReady && `/api/plano?planoId=${planoId}`,
+        router.isReady && `/api/plano?planoId=${planoId}&empresaId=${empresaId}`,
         fetcher,
         {
             dedupingInterval: 1000,
@@ -410,7 +411,7 @@ export default function Home() {
         } finally {
             setPublishing(false);
             toast.success("Plano editada com sucesso!")
-            // router.back();
+            router.push(`/plano-de-acao/painel?empresaId=${empresaId}`);
         }
     }
 
