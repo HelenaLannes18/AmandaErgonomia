@@ -411,7 +411,7 @@ export default function Home() {
         } finally {
             setPublishing(false);
             toast.success("Plano editada com sucesso!")
-            router.push(`/plano-de-acao/painel?empresaId=${empresaId}`);
+            router.push(`/painel-plano-de-acao/painel?empresaId=${empresaId}`);
         }
     }
 

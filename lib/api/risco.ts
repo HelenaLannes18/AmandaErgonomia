@@ -131,7 +131,7 @@ export async function createRisco(
     areaavaliadaName,
     unidadeName,
     images,
-    empresaId
+    empresaId,
   } = req.body;
 
   try {

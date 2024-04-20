@@ -334,6 +334,7 @@ export default function ControleDosRiscos() {
                     classificacao_riscos_classificacao: valueSelect6?.map(item => item.value),
                     areaavaliadaName: valueSelect?.map(item => item.value),
                     unidadeName: valueSelect2?.map(item => item.value),
+                    empresaId: selectedOption2
 
                 })
             })

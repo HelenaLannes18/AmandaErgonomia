@@ -95,7 +95,7 @@ export default function Home({ planos }) {
     }, [searchTerm])
 
     const EditRedirect = (planoId: string) => {
-        router.push(`/painel-plano/${planoId}?empresaId=${empresaId}`)
+        router.push(`/painel-plano-de-acao/${planoId}?empresaId=${empresaId}`)
     }
 
     return (
