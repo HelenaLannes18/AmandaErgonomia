@@ -21,21 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <ClerkProvider
         localization={ptBR}
-        appearance={{
-          variables: { colorPrimary: "#000000" },
-          elements: {
-            formButtonPrimary:
-              "bg-blue border border-blue border-solid hover:bg-white hover:text-blue",
-            socialButtonsBlockButton:
-              "bg-white border-gray-200 hover:bg-transparent hover:border-blue text-gray-600 hover:text-blue",
-            socialButtonsBlockButtonText: "font-semibold",
-            formButtonReset:
-              "bg-white border border-solid border-gray-200 hover:bg-transparent hover:border-blue text-gray-500 hover:text-blue",
-            membersPageInviteButton:
-              "bg-blue border border-blue border-solid hover:bg-white hover:text-blue",
-            card: "bg-[#fafafa]",
-          },
-        }}
+
       >
 
         <Toaster position="top-right" />

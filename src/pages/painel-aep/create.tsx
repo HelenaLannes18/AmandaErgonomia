@@ -151,12 +151,12 @@ export default function AvaliacaoPreliminar() {
 
     const [isLoading, setIsLoading] = useState(false);
     const [options, setOptions] = useState<Option[]>([]);
-    const [valueSelect, setValueSelect] = useState<Option[] | null>(null);
+    const [valueSelect, setValueSelect] = useState<Option[] | null>([]);
 
     //unidade
     const [isLoading2, setIsLoading2] = useState(false);
     const [options2, setOptions2] = useState<Option[]>([]);
-    const [valueSelect2, setValueSelect2] = useState<Option[] | null>(null);
+    const [valueSelect2, setValueSelect2] = useState<Option[] | null>([]);
 
     const handleCreate = (inputValue: string) => {
         setIsLoading(true);

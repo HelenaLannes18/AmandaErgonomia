@@ -163,23 +163,23 @@ export default function ControleDosRiscos() {
     //unidade
     const [isLoading2, setIsLoading2] = useState(false);
     const [options2, setOptions2] = useState<Option[]>([]);
-    const [valueSelect2, setValueSelect2] = useState<Option[] | null>(null);
+    const [valueSelect2, setValueSelect2] = useState<Option[] | null>([]);
 
     const [isLoading3, setIsLoading3] = useState(false);
     const [options3, setOptions3] = useState<Option[]>([]);
-    const [valueSelect3, setValueSelect3] = useState<Option[] | null>(null);
+    const [valueSelect3, setValueSelect3] = useState<Option[] | null>([]);
 
     const [isLoading4, setIsLoading4] = useState(false);
     const [options4, setOptions4] = useState<Option[]>([]);
-    const [valueSelect4, setValueSelect4] = useState<Option[] | null>(null);
+    const [valueSelect4, setValueSelect4] = useState<Option[] | null>([]);
 
     const [isLoading5, setIsLoading5] = useState(false);
     const [options5, setOptions5] = useState<Option[]>([]);
-    const [valueSelect5, setValueSelect5] = useState<Option[] | null>(null);
+    const [valueSelect5, setValueSelect5] = useState<Option[] | null>([]);
 
     const [isLoading6, setIsLoading6] = useState(false);
     const [options6, setOptions6] = useState<Option[]>([]);
-    const [valueSelect6, setValueSelect6] = useState<Option[] | null>(null);
+    const [valueSelect6, setValueSelect6] = useState<Option[] | null>([]);
 
     const [selectedBoolean, setSelectedBoolean] = useState('')
 

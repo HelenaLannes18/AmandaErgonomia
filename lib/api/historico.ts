@@ -22,10 +22,13 @@ export async function getHistorico(
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void | NextApiResponse<AllHistoricos>> {
-  const { historicoId } = req.query;
+  const { historicoId, empresaId } = req.query;
 
   if (Array.isArray(historicoId))
-    return res.status(400).end('Bad request. Query parameters are not valid.');
+    return res.status(400).end('Bad request. HistoricoId parameters are not valid.');
+
+  if (Array.isArray(empresaId))
+    return res.status(400).end('Bad request. EmpresaId parameters are not valid.');
 
   try {
     if (historicoId) {
@@ -39,7 +42,7 @@ export async function getHistorico(
 
     const historicos = await prisma.historico.findMany({
       where: {
-        empresaId: '8bf372b9-b553-4c80-9c65-956d6fef3661',
+        empresaId: empresaId,
       },
     });
 

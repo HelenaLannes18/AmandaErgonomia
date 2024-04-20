@@ -45,6 +45,15 @@ interface EmpresaData {
     cnpj: string;
 }
 
+interface HistoricoData {
+    id: string;
+    revisao: string;
+    data: string;
+    executado: string;
+    verificado: string;
+    descricao: string;
+}
+
 interface Option {
     readonly label: string;
     readonly value: string;
@@ -64,7 +73,16 @@ export default function Home() {
         }
     );
 
+    const { data: historico } = useSWR<HistoricoData>(
+        router.isReady && `/api/historico/${empresaId}/edit`,
+        fetcher,
+        {
+            dedupingInterval: 1000,
+            revalidateOnFocus: false
+        }
+    )
 
+    const historicoId = historico;
     const [savedState, setSavedState] = useState(
         empresa
             ? `Last saved at ${Intl.DateTimeFormat("en", { month: "short" }).format(
@@ -474,7 +492,7 @@ export default function Home() {
         } finally {
             setPublishing(false);
             toast.success("Empresa editada com sucesso!")
-            router.back();
+            router.push(`/historico/${empresaId}/${historicoId}`);
         }
     }
 

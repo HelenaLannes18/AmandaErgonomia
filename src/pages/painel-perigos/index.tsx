@@ -135,8 +135,8 @@ export default function Home({ empresas }) {
                 >
                     <Button
                         as="button"
-                        mt={"10%"}
-                        w={{ md: "13%", sm: "23%" }}
+                        mt={"100%"}
+                        // w={{ md: "13%", sm: "23%" }}
                         bg={"rgba(70, 83, 100, 1.00)"}
                         borderRadius={"8px"}
                         color={"#fff"}
@@ -151,12 +151,13 @@ export default function Home({ empresas }) {
 
                 <Link
                     as={NextLink}
-                    href={"/painel-perigos"}
+                    href={"/painel-riscos"}
                 >
                     <Button
                         as="button"
-                        mt={"10%"}
-                        w={{ md: "13%", sm: "23%" }}
+                        mt={"110%"}
+                        w={"110%"}
+                        // w={{ md: "13%", sm: "23%" }}
                         bg={"rgba(70, 83, 100, 1.00)"}
                         borderRadius={"8px"}
                         color={"#fff"}

@@ -102,7 +102,7 @@ export default function Home({ perigos }) {
         <Main title2={"Painel Administrativo de Perigos"} title="" w={undefined} path={""} altText={""} tamh={0} tamw={0}>
 
             <HStack
-                justify={"end"}
+                justify={"space-between"}
                 spacing={"2%"}
                 w={"100%"}
             >
@@ -129,46 +129,7 @@ export default function Home({ perigos }) {
                 </InputGroup>
                 {/* <ButtonPage text={"Perigos"} href={"/painel-perigos/identificacao-de-perigos"} w={{ xl: "10%", lg: "15%" }} mt={{ xl: "5%", lg: "9%", md: "2%", xxs: "3%" }} />
                 <ButtonPage text={"Riscos"} href={"/painel-riscos/controle-dos-riscos"} w={{ xl: "10%", lg: "15%" }} mt={{ xl: "5%", lg: "9%", md: "2%", xxs: "3%" }} /> */}
-                <Link
-                    as={NextLink}
-                    href={"/painel-perigos"}
-                >
-                    <Button
-                        as="button"
-                        mt={"10%"}
-                        w={{ md: "13%", sm: "23%" }}
-                        bg={"rgba(70, 83, 100, 1.00)"}
-                        borderRadius={"8px"}
-                        color={"#fff"}
-                        fontSize={"16px"}
-                        _hover={{
-                            bg: "rgba(70, 83, 100, 1.00)"
-                        }}
-                    >
-                        Perigos
-                    </Button>
-                </Link>
 
-                <Link
-                    as={NextLink}
-                    href={"/painel-perigos"}
-                >
-                    <Button
-                        as="button"
-                        mt={"10%"}
-                        w={{ md: "13%", sm: "23%" }}
-                        bg={"rgba(70, 83, 100, 1.00)"}
-                        borderRadius={"8px"}
-                        color={"#fff"}
-                        fontSize={"16px"}
-                        _hover={{
-                            bg: "rgba(70, 83, 100, 1.00)"
-                        }}
-                    >
-                        Riscos
-                    </Button>
-
-                </Link>
 
                 <ButtonAd text={"Cadastrar novo Perigo"} mt={"10%"} onClick={() => {
                     setCreatingPerigo(true)
