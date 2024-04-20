@@ -1,8 +1,17 @@
 import {
     Divider,
     HStack,
+    Link,
     Select as SelectChackra,
     Stack,
+    Table,
+    TableContainer,
+    Tbody,
+    Td,
+    Th,
+    Thead,
+    Tr,
+    Text
 } from '@chakra-ui/react';
 
 import {
@@ -21,7 +30,7 @@ import {
     FormVariavel3,
     FormVariavelNumber,
 } from '../Form';
-import { ButtonAd, ButtonLogin } from '../Button';
+import { ButtonActions, ButtonAd, ButtonLogin } from '../Button';
 import { TextLinkLogin } from '../Link';
 import { TableIndex } from '../Table';
 import { UseFormRegisterReturn } from 'react-hook-form';
@@ -33,6 +42,9 @@ import {
 } from '@chakra-ui/react';
 import ImageUpload from '../image-upload';
 import { useExcelDownloder } from 'react-xls';
+import { FiEdit2, FiEye, FiTrash2 } from 'react-icons/fi';
+import { format } from 'date-fns';
+import { Pagination } from '../Pagination';
 
 interface CardLoginProps {
     //Tipar certo depois
@@ -839,6 +851,8 @@ interface CardHistoricoProps {
     register5?: UseFormRegisterReturn;
     onClick?: any;
     type?: any;
+    historicosData?: any
+    handleDelete?: any
 }
 
 export function CardHistorico({
@@ -879,6 +893,8 @@ export function CardHistorico({
     register3,
     register4,
     register5,
+    historicosData,
+    handleDelete
 }: CardHistoricoProps) {
     return (
         <Stack
@@ -944,6 +960,59 @@ export function CardHistorico({
                 onChange2={onChange5}
                 name2={name5}
             />
+            <Text>Historicos: </Text>
+            <TableContainer w={"100%"} borderRadius={"8px"}>
+                <Table variant='simple'>
+                    <Thead
+                        bg="#F6F9FC"
+                    >
+                        <Tr>
+                            <Th color={"#8898AA"} >Revisão</Th>
+                            <Th color={"#8898AA"} textAlign={"center"}>Executado</Th>
+                            <Th color={"#8898AA"} textAlign={"center"}>Verificado</Th>
+                            <Th color={"#8898AA"} textAlign={"center"}>Descrição</Th>
+                            <Th color={"#8898AA"} textAlign={"center"}>Data</Th>
+                            <Th color={"#8898AA"} textAlign={"center"}>Ações</Th>
+                        </Tr>
+                    </Thead>
+                    <Tbody>
+                        {historicosData ? (
+                            historicosData?.historicos.map((historico: any) => (
+                                <Tr color={"#E9ECEF"} fontSize={'14px'} key={historico.id}>
+                                    <Td color={"#525F7F"}>
+                                        <Link href={`/empresa/${historico.id}`}>{historico.revisao}</Link>
+                                    </Td>
+                                    <Td
+                                        textAlign={"center"}
+                                        color={"#525F7F"}
+                                    >
+                                        {historico.revisao}
+                                    </Td>
+                                    <Td
+                                        textAlign={"center"}
+                                        color={"#525F7F"}
+                                    >
+                                        {historico.executado}
+                                    </Td>
+                                    <Td
+                                        textAlign={"center"}
+                                        color={"#525F7F"}
+                                    >
+                                        {historico.verificado}
+                                    </Td>
+                                    <Td color={"#525F7F"} textAlign={"center"}>
+                                        {format(historico.data, 'dd-MM-yyyy HH:mm:ss')}
+                                    </Td>
+                                    <Td> <ButtonActions as={FiTrash2} onClick={() => handleDelete(historico.id)} /></Td>
+                                </Tr>
+                            ))) : (
+                            "Nen"
+                        )}
+
+                    </Tbody>
+
+                </Table>
+            </TableContainer>
 
             <Stack w={'100%'} align={'end'}>
                 <ButtonAd text={'Salvar'} mt={'0'} onClick={onClick} type={type} />
