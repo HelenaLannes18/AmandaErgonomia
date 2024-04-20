@@ -62,6 +62,8 @@ interface Option {
 export default function Home() {
     const router = useRouter()
     const { id: empresaId } = router.query
+    const [historicoId, setHistoricoId] = useState<string | null>(null);
+
 
 
     const { data: empresa, isValidating } = useSWR<EmpresaData>(
@@ -73,16 +75,22 @@ export default function Home() {
         }
     );
 
-    const { data: historico } = useSWR<HistoricoData>(
-        router.isReady && `/api/historico/${empresaId}/edit`,
+    const { data: historicosData } = useSWR<{ historicos: HistoricoData[] }>(
+        router.isReady && `/api/historico?empresaId=${empresaId}`,
         fetcher,
         {
             dedupingInterval: 1000,
-            revalidateOnFocus: false
+            revalidateOnFocus: false,
         }
-    )
+    );
 
-    const historicoId = historico;
+
+    useEffect(() => {
+        if (historicosData && historicosData.historicos.length > 0) {
+            setHistoricoId(historicosData.historicos[0].id);
+        }
+    }, [historicosData]);
+
     const [savedState, setSavedState] = useState(
         empresa
             ? `Last saved at ${Intl.DateTimeFormat("en", { month: "short" }).format(
@@ -492,7 +500,7 @@ export default function Home() {
         } finally {
             setPublishing(false);
             toast.success("Empresa editada com sucesso!")
-            router.push(`/historico/${empresaId}/${historicoId}`);
+            router.push(`/historico/${empresaId}/edit?historicoId=${historicoId}`);
         }
     }
 
