@@ -101,8 +101,9 @@ export default function Home({ riscos }) {
     return (
         <Main title2={"Painel Administrativo de Riscos"} title="" w={undefined} path={""} altText={""} tamh={0} tamw={0}>
 
+
             <HStack
-                justify={"end"}
+                justify={"space-between"}
                 spacing={"2%"}
                 w={"100%"}
             >
@@ -127,48 +128,8 @@ export default function Home({ riscos }) {
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)} />
                 </InputGroup>
-                {/* <ButtonPage text={"Riscos"} href={"/painel-riscos/identificacao-de-riscos"} w={{ xl: "10%", lg: "15%" }} mt={{ xl: "5%", lg: "9%", md: "2%", xxs: "3%" }} />
+                {/* <ButtonPage text={"Perigos"} href={"/painel-perigos/identificacao-de-perigos"} w={{ xl: "10%", lg: "15%" }} mt={{ xl: "5%", lg: "9%", md: "2%", xxs: "3%" }} />
                 <ButtonPage text={"Riscos"} href={"/painel-riscos/controle-dos-riscos"} w={{ xl: "10%", lg: "15%" }} mt={{ xl: "5%", lg: "9%", md: "2%", xxs: "3%" }} /> */}
-                <Link
-                    as={NextLink}
-                    href={"/painel-riscos"}
-                >
-                    <Button
-                        as="button"
-                        mt={"10%"}
-                        w={{ md: "13%", sm: "23%" }}
-                        bg={"rgba(70, 83, 100, 1.00)"}
-                        borderRadius={"8px"}
-                        color={"#fff"}
-                        fontSize={"16px"}
-                        _hover={{
-                            bg: "rgba(70, 83, 100, 1.00)"
-                        }}
-                    >
-                        Riscos
-                    </Button>
-                </Link>
-
-                <Link
-                    as={NextLink}
-                    href={"/painel-riscos"}
-                >
-                    <Button
-                        as="button"
-                        mt={"10%"}
-                        w={{ md: "13%", sm: "23%" }}
-                        bg={"rgba(70, 83, 100, 1.00)"}
-                        borderRadius={"8px"}
-                        color={"#fff"}
-                        fontSize={"16px"}
-                        _hover={{
-                            bg: "rgba(70, 83, 100, 1.00)"
-                        }}
-                    >
-                        Riscos
-                    </Button>
-
-                </Link>
 
                 <ButtonAd text={"Cadastrar novo Risco"} mt={"10%"} onClick={() => {
                     setCreatingRisco(true)
