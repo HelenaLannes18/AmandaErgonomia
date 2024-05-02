@@ -181,7 +181,7 @@ export default function Home() {
     <>
       <form onSubmit={handleSubmit(onSubmit, onError)}>
 
-        <Main title2={"Painel Administrativo de Empresas"} title="" w={undefined} path={""} altText={""} tamh={0} tamw={0}>
+        <Main title2={"Cadastro Inicial da Empresa Avaliada"} title="" w={undefined} path={""} altText={""} tamh={0} tamw={0}>
 
           <CardCadastroInicial type={"submit"}
 

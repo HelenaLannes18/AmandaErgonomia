@@ -24,9 +24,9 @@ export default function Home() {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            nome_responsavel: "",
-            habilitacao_responsavel: "",
-            registro_responsavel: "",
+            nome_responsavel: "Amanda Viviane Muniz Rodrigues",
+            habilitacao_responsavel: "Fisioterapeuta / Especialista em Ergonomia",
+            registro_responsavel: "CREFITO 4/127866F",
 
         },
     });
@@ -48,7 +48,7 @@ export default function Home() {
                     registro_responsavel: values.registro_responsavel,
                 }),
             });
-            toast.success("Empresa Cadastrada!")
+            toast.success("Responsavel Tecnico Cadastrado!")
             const responseData = await response.json();
 
             // Redireciona para a rota desejada com o id
@@ -71,7 +71,7 @@ export default function Home() {
         <>
             <form onSubmit={handleSubmit(onSubmit, onError)}>
 
-                <Main title2={"Cadastro Empresa Elaboradora"} title="" w={undefined} path={""} altText={""} tamh={0} tamw={0}>
+                <Main title2={"Cadastro do Responsavel Técnico"} title="" w={undefined} path={""} altText={""} tamh={0} tamw={0}>
 
                     <CardCadastroEmpresaResponsavel type={"submit"}
                         type1={"nome_responsavel"} isInvalid1={!!formState.errors.nome_responsavel} register1={register("nome_responsavel")} error1={formState.errors.nome_responsavel?.message}

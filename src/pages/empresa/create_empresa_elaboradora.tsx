@@ -31,16 +31,16 @@ export default function Home() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      razao_social_elaboradora: "",
-      cnpj_elaboradora: "",
-      ie_elaboradora: "",
-      endereco_elaboradora: "",
-      bairro_elaboradora: "",
-      cep_elaboradora: "",
-      cidade_elaboradora: "",
-      uf_elaboradora: "",
-      telefone_elaboradora: "",
-      email_elaboradora: ""
+      razao_social_elaboradora: "ERGOGROUP – Segurança do Trabalho Ltda",
+      cnpj_elaboradora: "21.135.906/00019",
+      ie_elaboradora: "Isento",
+      endereco_elaboradora: "Rua Santo Antônio, nº145",
+      bairro_elaboradora: "Centro",
+      cep_elaboradora: "38010-160",
+      cidade_elaboradora: "Uberaba",
+      uf_elaboradora: "MG",
+      telefone_elaboradora: "(34) 3333-9987",
+      email_elaboradora: "contato@ergogroup.com.br"
 
     },
   });
@@ -69,7 +69,7 @@ export default function Home() {
           email_elaboradora: values.email_elaboradora
         }),
       });
-      toast.success("Empresa Cadastrada!")
+      toast.success("Empresa Elaboradora Cadastrada!")
       const responseData = await response.json();
 
       // Extrai o id do JSON
@@ -98,7 +98,7 @@ export default function Home() {
     <>
       <form onSubmit={handleSubmit(onSubmit, onError)}>
 
-        <Main title2={"Cadastro Empresa Elaboradora"} title="" w={undefined} path={""} altText={""} tamh={0} tamw={0}>
+        <Main title2={"Cadastro da Empresa Elaboradora da AEP"} title="" w={undefined} path={""} altText={""} tamh={0} tamw={0}>
 
           <CardCadastroEmpresaElaboradora type={"submit"}
 

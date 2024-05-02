@@ -48,7 +48,7 @@ export default function Home() {
                     email_gestor: values.email_gestor,
                 }),
             });
-            toast.success("Empresa Cadastrada!")
+            toast.success("Gestor Cadastrado!")
 
             const responseData = await response.json();
             // Redireciona para a rota desejada com o id
@@ -71,7 +71,7 @@ export default function Home() {
         <>
             <form onSubmit={handleSubmit(onSubmit, onError)}>
 
-                <Main title2={"Cadastro Empresa Elaboradora"} title="" w={undefined} path={""} altText={""} tamh={0} tamw={0}>
+                <Main title2={"Cadastro Gestor do Contrato"} title="" w={undefined} path={""} altText={""} tamh={0} tamw={0}>
 
                     <CardCadastroEmpresaGestor type={"submit"}
                         type1={"nome_gestor"} isInvalid1={!!formState.errors.nome_gestor} register1={register("nome_gestor")} error1={formState.errors.nome_gestor?.message}

@@ -309,6 +309,17 @@ export async function updateEmpresa(
     nome_responsavel,
     habilitacao_responsavel,
     registro_responsavel,
+    nome_fantasia,
+    razao_social_elaboradora,
+    cnpj_elaboradora,
+    ie_elaboradora,
+    endereco_elaboradora,
+    bairro_elaboradora,
+    cep_elaboradora,
+    cidade_elaboradora,
+    uf_elaboradora,
+    telefone_elaboradora,
+    email_elaboradora,
   } = req.body;
 
   const { empresaId } = req.query;
@@ -335,7 +346,7 @@ export async function updateEmpresa(
         id: empresaId,
       },
       data: {
-        name: name,
+        name: nome_fantasia,
         cnpj: cnpj,
         cidade: cidade,
         estado: estado,
@@ -367,8 +378,39 @@ export async function updateEmpresa(
         nome_responsavel: nome_responsavel,
         habilitacao_responsavel: habilitacao_responsavel,
         registro_responsavel: registro_responsavel,
+        nome_fantasia: nome_fantasia,
+        razao_social_elaboradora: razao_social_elaboradora,
+        cnpj_elaboradora: cnpj_elaboradora,
+        ie_elaboradora: ie_elaboradora,
+        endereco_elaboradora: endereco_elaboradora,
+        bairro_elaboradora: bairro_elaboradora,
+        cep_elaboradora: cep_elaboradora,
+        cidade_elaboradora: cidade_elaboradora,
+        uf_elaboradora: uf_elaboradora,
+        telefone_elaboradora: telefone_elaboradora,
+        email_elaboradora: email_elaboradora,
       },
     });
+
+       for (const unidadeSingle of unidadeName) {
+      const addAreaAvaliada = await prisma.areaavaliada.create({
+        data: {
+          nameAvaliada: unidadeSingle,
+          empresaId: response.id,
+        },
+      });
+    }
+
+    //fazer o mesmo para o setor tbm pois uma empresa pode ter varios setores
+
+    for (const area of areaavaliadaName) {
+      const addUnidade = await prisma.unidade.create({
+        data: {
+          nameUnidade: area,
+          empresaId: response.id,
+        },
+      });
+    }
 
     return res.status(201).json({
       empresaId: response.id,
