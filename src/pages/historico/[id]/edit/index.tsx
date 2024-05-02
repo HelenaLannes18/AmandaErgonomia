@@ -71,15 +71,15 @@ export default function Home() {
             });
             toast.success("Histórico cadastrado com sucesso!");
             const responseData = await response.json();
-            router.push(`/empresa/create_empresa`);
+            router.push(`/empresa/${empresaId}/create_empresa`);
 
             if (!response.ok) {
                 const error = await response.text();
                 throw new Error(error);
-                router.push(`/empresa/create_empresa`);
+                router.push(`/empresa/${empresaId}/create_empresa`);
             }
         } catch (error) {
-            router.push(`/empresa/create_empresa`);
+            router.push(`/empresa/${empresaId}/create_empresa`);
             console.error(error);
         }
     };
