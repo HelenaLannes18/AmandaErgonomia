@@ -71,15 +71,15 @@ export default function Home() {
             });
             toast.success("Histórico cadastrado com sucesso!");
             const responseData = await response.json();
-            router.push(`/empresa`);
+            router.push(`/empresa/create_empresa_elaboradora`);
 
             if (!response.ok) {
                 const error = await response.text();
                 throw new Error(error);
-                router.push(`/empresa`);
+                router.push(`/empresa/create_empresa_elaboradora`);
             }
         } catch (error) {
-            router.push(`/empresa`);
+            router.push(`/empresa/create_empresa_elaboradora`);
             console.error(error);
         }
     };
