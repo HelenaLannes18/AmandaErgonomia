@@ -25,7 +25,7 @@ export async function getEmpresa(
   res: NextApiResponse
 ): Promise<void | NextApiResponse<AllEmpresas>> {
   const { empresaId } = req.query;
-  
+
 
   if (Array.isArray(empresaId))
     return res.status(400).end('Bad request. Query parameters are not valid.');
@@ -128,8 +128,19 @@ export async function createEmpresa(
     telefone,
     habilitacao_responsavel_tecnico,
     setor,
-    unidade,
-    area_avaliada,
+    // unidade,
+    // area_avaliada,
+    nome_fantasia,
+    razao_social_elaboradora,
+    cnpj_elaboradora,
+    ie_elaboradora,
+    endereco_elaboradora,
+    bairro_elaboradora,
+    cep_elaboradora,
+    cidade_elaboradora,
+    uf_elaboradora,
+    telefone_elaboradora,
+    email_elaboradora,
   } = req.body;
 
   try {
@@ -141,7 +152,7 @@ export async function createEmpresa(
     }
     const response = await prisma.empresa.create({
       data: {
-        name: name,
+        name: nome_fantasia,
         cnpj: cnpj,
         cidade: cidade,
         estado: estado,
@@ -165,30 +176,41 @@ export async function createEmpresa(
         endereco: endereco,
         bairro: bairro,
         telefone: telefone,
-        unidadeName: area_avaliada.join(','),
-        areaavaliadaName: unidade.join(','),
+        nome_fantasia: nome_fantasia,
+        // unidadeName: area_avaliada.join(','),
+        // areaavaliadaName: unidade.join(','),
+        razao_social_elaboradora: razao_social_elaboradora,
+        cnpj_elaboradora: cnpj_elaboradora,
+        ie_elaboradora: ie_elaboradora,
+        endereco_elaboradora: endereco_elaboradora,
+        bairro_elaboradora: bairro_elaboradora,
+        cep_elaboradora: cep_elaboradora,
+        cidade_elaboradora: cidade_elaboradora,
+        uf_elaboradora: uf_elaboradora,
+        telefone_elaboradora: telefone_elaboradora,
+        email_elaboradora: email_elaboradora,
       },
     });
 
-    for (const unidadeSingle of unidade) {
-      const addAreaAvaliada = await prisma.areaavaliada.create({
-        data: {
-          nameAvaliada: unidadeSingle,
-          empresaId: response.id,
-        },
-      });
-    }
+    // for (const unidadeSingle of unidade) {
+    //   const addAreaAvaliada = await prisma.areaavaliada.create({
+    //     data: {
+    //       nameAvaliada: unidadeSingle,
+    //       empresaId: response.id,
+    //     },
+    //   });
+    // }
 
     // fazer o mesmo para o setor tbm pois uma empresa pode ter varios setores
 
-    for (const area of area_avaliada) {
-      const addUnidade = await prisma.unidade.create({
-        data: {
-          nameUnidade: area,
-          empresaId: response.id,
-        },
-      });
-    }
+    // for (const area of area_avaliada) {
+    //   const addUnidade = await prisma.unidade.create({
+    //     data: {
+    //       nameUnidade: area,
+    //       empresaId: response.id,
+    //     },
+    //   });
+    // }
 
     return res.status(201).json({
       empresaId: response.id,
@@ -281,6 +303,12 @@ export async function updateEmpresa(
     setor,
     unidadeName,
     areaavaliadaName,
+    nome_gestor,
+    telefone_gestor,
+    email_gestor,
+    nome_responsavel,
+    habilitacao_responsavel,
+    registro_responsavel,
   } = req.body;
 
   const { empresaId } = req.query;
@@ -333,6 +361,12 @@ export async function updateEmpresa(
         telefone: telefone,
         unidadeName: unidadesString,
         areaavaliadaName: areasAvaliadasString,
+        nome_gestor: nome_gestor,
+        telefone_gestor: telefone_gestor,
+        email_gestor: email_gestor,
+        nome_responsavel: nome_responsavel,
+        habilitacao_responsavel: habilitacao_responsavel,
+        registro_responsavel: registro_responsavel,
       },
     });
 

@@ -38,7 +38,7 @@ export default function Home({ empresas }) {
   )
 
   async function createEmpresa() {
-    router.push(`/empresa/create`)
+    router.push(`/empresa/create_empresa_elaboradora`)
   }
 
   const [currentPage, setCurrentPage] = useState<number>(0)

@@ -69,7 +69,7 @@ export default function Home() {
       });
       toast.success("Historico Cadastrado!")
       const responseData = await response.json();
-      router.push(`/empresa`);
+      router.push(`/empresa/${empresaId}/create_empresa`);
 
       if (!response.ok) {
         const error = await response.text()

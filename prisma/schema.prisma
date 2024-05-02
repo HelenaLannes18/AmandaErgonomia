@@ -63,33 +63,53 @@ model VerificationToken {
 
 model Empresa {
   id                              String         @id @default(uuid())
-  name                            String
-  email                           String?
+  name                            String?
+  razao_social_elaboradora        String?
+  cnpj_elaboradora                String?
+  ie_elaboradora                  String?
+  endereco_elaboradora            String?
+  bairro_elaboradora              String?
+  cep_elaboradora                 String?
+  cidade_elaboradora              String?
+  uf_elaboradora                  String?
+  telefone_elaboradora            String?
+  email_elaboradora               String?
+  //responsavel
+  nome_responsavel                String?
+  habilitacao_responsavel         String?
+  registro_responsavel            String?
   responsavel_tecnico             String?
   registro_responsavel_tecnico    String?
   habilitacao_responsavel_tecnico String?
+  nome_gestor_contrato            String?
+  telefone_gestor_contrato        String?
+  email_gestor_contrato           String?
+  //identificação da empresa
+  razao_social                    String?
+  nome_fantasia                   String?
+  cnpj                            String?
+  ie                              String?
+  ergonomista                     String?
+  endereco                        String?
+  bairro                          String?
+  cidade                          String?
+  estado                          String?
+  telefone                        String?
+  email                           String?
   ramo_atividade                  String?
   atividade_principal             String?
   cnae                            String?
   grau_risco                      String?
-  nome_gestor_contrato            String?
-  telefone_gestor_contrato        String?
-  email_gestor_contrato           String?
-  razao_social                    String?
-  ergonomista                     String?
-  ie                              String?
   cep                             String?
   setor                           String?
-  endereco                        String?
-  bairro                          String?
-  telefone                        String?
+  //gestor 
+  nome_gestor                     String?
+  telefone_gestor                 String?
+  email_gestor                    String?
   unidades                        Unidade[]
   unidadeName                     String?
   areaavaliadaName                String?
   area_avaliadas                  Areaavaliada[]
-  cnpj                            String
-  cidade                          String?
-  estado                          String?
   ergonomicas                     Ergonomica[]
   riscos                          Risco[]
   perigos                         Perigo[]

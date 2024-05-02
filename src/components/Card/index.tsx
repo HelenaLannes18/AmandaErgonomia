@@ -510,10 +510,10 @@ export function CardCadastroInicial({
             boxShadow={'0px 0px 32px 0px rgba(136, 152, 170, 0.15)'}
         >
             <FormAvaliacaoInput
-                label1={'Empresa'}
-                placeholder1={'Digite o Nome da Empresa'}
-                label2={'CNPJ'}
-                placeholder2={'Digite o CNPJ'}
+                label1={'Razão Social'}
+                placeholder1={'Digite a Razão Social'}
+                label2={'Nome Fantasia'}
+                placeholder2={'Digite o Nome Fantasia'}
                 type1={type1}
                 type2={type2}
                 value1={value1}
@@ -531,10 +531,10 @@ export function CardCadastroInicial({
             />
             <Divider />
             <FormAvaliacaoInput
-                label1={'Razão Social'}
-                placeholder1={'Digite a Razão Social'}
-                label2={'Ergonomista'}
-                placeholder2={'Digite o Nome do Ergonomista'}
+                label1={'CNPJ'}
+                placeholder1={'Digite o CNPJ'}
+                label2={'I.E'}
+                placeholder2={'Digite o I.E'}
                 type1={type3}
                 type2={type4}
                 value1={value3}
@@ -552,10 +552,10 @@ export function CardCadastroInicial({
             />
 
             <FormAvaliacaoInput
-                label1={'I.E'}
-                placeholder1={'Digite a I.E'}
-                label2={'CEP'}
-                placeholder2={'Digite o CEP'}
+                label1={'Endereço'}
+                placeholder1={'Digite o Endereço'}
+                label2={'Bairro'}
+                placeholder2={'Digite o Bairro'}
                 type1={type5}
                 type2={type6}
                 value1={value5}
@@ -573,8 +573,8 @@ export function CardCadastroInicial({
             />
 
             <FormOneInput
-                label={'Endereço'}
-                placeholder={'Digite o Endereço'}
+                label={'Cidade'}
+                placeholder={'Digite a Cidade'}
                 type={type7}
                 value={value7}
                 error={error7}
@@ -585,10 +585,10 @@ export function CardCadastroInicial({
             />
 
             <FormAvaliacaoInputThree
-                label1={'Bairro'}
-                placeholder1={'Digite o Bairro'}
-                label2={'Cidade'}
-                placeholder2={'Digite a Cidade'}
+                label1={'UF'}
+                placeholder1={'Digite a UF'}
+                label2={'Telefone'}
+                placeholder2={'Digite o Telefone'}
                 type1={type20}
                 type2={type21}
                 value1={value20}
@@ -603,8 +603,8 @@ export function CardCadastroInicial({
                 onChange2={onChange21}
                 name1={name20}
                 name2={name21}
-                label3={'UF'}
-                placeholder3={'Digite a UF'}
+                label3={'Email'}
+                placeholder3={'Digite o Email'}
                 type3={type22}
                 value3={value22}
                 error3={error22}
@@ -615,10 +615,10 @@ export function CardCadastroInicial({
             />
 
             <FormAvaliacaoInput
-                label1={'Telefone'}
-                placeholder1={'Digite o Telefone'}
-                label2={'Email'}
-                placeholder2={'Digite o Email'}
+                label1={'Ramo de Atividade'}
+                placeholder1={'Digite o Ramo de Atividade'}
+                label2={'Atividade Principal'}
+                placeholder2={'Digite a Atividade Principal'}
                 type1={type8}
                 type2={type9}
                 value1={value8}
@@ -635,7 +635,7 @@ export function CardCadastroInicial({
                 name2={name9}
             />
 
-            <FormOneInput
+            {/* <FormOneInput
                 label={'Responsável Técnico'}
                 placeholder={'Digite o Nome do Responsável Técnico'}
                 type={'area_avaliadas'}
@@ -645,13 +645,13 @@ export function CardCadastroInicial({
                 register={register10}
                 onChange={onChange10}
                 name={name10}
-            />
+            /> */}
 
             <FormAvaliacaoInput
-                label1={'Habilitação do Responsável Técnico'}
-                placeholder1={'Digite a Habilitação do Responsável Técnico'}
-                label2={'Registro do Responsável Técnico'}
-                placeholder2={'Digite o Registro do Responsável Técnico'}
+                label1={'CNAE'}
+                placeholder1={'Digite o CNAE'}
+                label2={'Registro do Grau de Risco'}
+                placeholder2={'Digite o Registro do Grau de Risco'}
                 type1={type11}
                 type2={type12}
                 value1={value11}
@@ -668,77 +668,7 @@ export function CardCadastroInicial({
                 name2={name12}
             />
 
-            <FormAvaliacaoInput
-                label1={'Ramo de Atividade'}
-                placeholder1={'Digite o Ramo de Atividade'}
-                label2={'Atividade Principal'}
-                placeholder2={'Digite a Atividade Principal'}
-                type1={type13}
-                type2={type14}
-                value1={value13}
-                value2={value14}
-                error1={error13}
-                error2={error14}
-                isInvalid1={isInvalid13}
-                isInvalid2={isInvalid14}
-                register1={register13}
-                register2={register14}
-                onChange1={onChange13}
-                onChange2={onChange14}
-                name1={name13}
-                name2={name14}
-            />
 
-            <FormAvaliacaoInput
-                label1={'CNAE'}
-                placeholder1={'Digite o CNAE'}
-                label2={'Grau de Risco'}
-                placeholder2={'Digite o Grau de Risco'}
-                type1={type15}
-                type2={type16}
-                value1={value15}
-                value2={value16}
-                error1={error15}
-                error2={error16}
-                isInvalid1={isInvalid15}
-                isInvalid2={isInvalid16}
-                register1={register15}
-                register2={register16}
-                onChange1={onChange15}
-                onChange2={onChange16}
-                name1={name15}
-                name2={name16}
-            />
-
-            <FormAvaliacaoInputThree
-                label1={'Nome do Gestor do Contrato'}
-                placeholder1={'Digite o Nome do Gestor do Contrato'}
-                label2={'Telefone do Gestor do Contrato'}
-                placeholder2={'Digite o Telefone do Gestor do Contrato'}
-                type1={type23}
-                type2={type24}
-                value1={value23}
-                value2={value24}
-                error1={error23}
-                error2={error24}
-                isInvalid1={isInvalid23}
-                isInvalid2={isInvalid24}
-                register1={register23}
-                register2={register24}
-                onChange1={onChange23}
-                onChange2={onChange24}
-                name1={name23}
-                name2={name24}
-                label3={'Email do Gestor do Contrato'}
-                placeholder3={'Digite o Email do Gestor do Contrato'}
-                type3={type25}
-                value3={value25}
-                error3={error25}
-                onChange3={onChange25}
-                register3={register25}
-                isInvalid3={isInvalid25}
-                name3={name25}
-            />
 
             <FormAvaliacaoMulti
                 label1={'Unidade'}
@@ -812,6 +742,430 @@ export function CardCadastroInicial({
         </Stack>
     );
 }
+
+
+export function CardCadastroEmpresaElaboradora({
+    type1,
+    isInvalid1,
+    register1,
+    error1,
+    type2,
+    isInvalid2,
+    register2,
+    error2,
+    type3,
+    isInvalid3,
+    register3,
+    error3,
+    type4,
+    isInvalid4,
+    register4,
+    error4,
+    type5,
+    isInvalid5,
+    register5,
+    error5,
+    type6,
+    isInvalid6,
+    register6,
+    error6,
+    type7,
+    isInvalid7,
+    register7,
+    error7,
+    value1,
+    value2,
+    value3,
+    value4,
+    value5,
+    value6,
+    value7,
+    onChange1,
+    onChange2,
+    onChange3,
+    onChange4,
+    onChange5,
+    onChange6,
+    onChange7,
+    name1,
+    name20,
+    name21,
+    name22,
+    name2,
+    name3,
+    name4,
+    name5,
+    name6,
+    name7,
+    name8,
+    name9,
+    type,
+    children,
+    type20,
+    value20,
+    error20,
+    isInvalid20,
+    register20,
+    onChange20,
+    type21,
+    value21,
+    error21,
+    isInvalid21,
+    register21,
+    onChange21,
+    type22,
+    value22,
+    error22,
+    isInvalid22,
+    register22,
+    onChange22,
+    onClick,
+}: CardCadastroInicialProps) {
+    return (
+        <Stack
+            bg={'#F7FAFC'}
+            borderRadius={'8px'}
+            align={'start'}
+            spacing={9}
+            mt={'9%'}
+            px={10}
+            py={9}
+            boxShadow={'0px 0px 32px 0px rgba(136, 152, 170, 0.15)'}
+        >
+            <FormAvaliacaoInput
+                label1={'Razão Social'}
+                placeholder1={'Digite a Razão Social'}
+                label2={'CNPJ'}
+                placeholder2={'Digite o CNPJ'}
+                type1={type1}
+                type2={type2}
+                value1={value1}
+                value2={value2}
+                error1={error1}
+                error2={error2}
+                isInvalid1={isInvalid1}
+                isInvalid2={isInvalid2}
+                register1={register1}
+                register2={register2}
+                onChange1={onChange1}
+                onChange2={onChange2}
+                name1={name1}
+                name2={name2}
+            />
+            <Divider />
+            <FormAvaliacaoInput
+                label1={'I.E'}
+                placeholder1={'Digite o I.E'}
+                label2={'Endereço'}
+                placeholder2={'Digite o Endereço'}
+                type1={type3}
+                type2={type4}
+                value1={value3}
+                value2={value4}
+                error1={error3}
+                error2={error4}
+                isInvalid1={isInvalid3}
+                isInvalid2={isInvalid4}
+                register1={register3}
+                register2={register4}
+                onChange1={onChange3}
+                onChange2={onChange4}
+                name1={name3}
+                name2={name4}
+            />
+
+            <FormAvaliacaoInput
+                label1={'Bairro'}
+                placeholder1={'Digite o Bairro'}
+                label2={'CEP'}
+                placeholder2={'Digite o CEP'}
+                type1={type5}
+                type2={type6}
+                value1={value5}
+                value2={value6}
+                error1={error5}
+                error2={error6}
+                isInvalid1={isInvalid5}
+                isInvalid2={isInvalid6}
+                register1={register5}
+                register2={register6}
+                onChange1={onChange5}
+                onChange2={onChange6}
+                name1={name5}
+                name2={name6}
+            />
+
+            <FormOneInput
+                label={'Cidade'}
+                placeholder={'Digite a Cidade'}
+                type={type7}
+                value={value7}
+                error={error7}
+                isInvalid={isInvalid7}
+                register={register7}
+                onChange={onChange7}
+                name={name7}
+            />
+
+            <FormAvaliacaoInputThree
+                label1={'UF'}
+                placeholder1={'Digite a UF'}
+                label2={'Telefone'}
+                placeholder2={'Digite o Telefone'}
+                type1={type20}
+                type2={type21}
+                value1={value20}
+                value2={value21}
+                error1={error20}
+                error2={error21}
+                isInvalid1={isInvalid20}
+                isInvalid2={isInvalid21}
+                register1={register20}
+                register2={register21}
+                onChange1={onChange20}
+                onChange2={onChange21}
+                name1={name20}
+                name2={name21}
+                label3={'Email'}
+                placeholder3={'Digite o Email'}
+                type3={type22}
+                value3={value22}
+                error3={error22}
+                onChange3={onChange22}
+                register3={register22}
+                isInvalid3={isInvalid22}
+                name3={name22}
+            />
+
+
+            {children}
+
+            <Stack w={'100%'} align={'end'}>
+                <ButtonAd text={'Salvar'} mt={'0'} type={type} onClick={onClick} />
+            </Stack>
+        </Stack>
+    );
+}
+
+
+
+
+export function CardCadastroEmpresaGestor({
+    type1,
+    isInvalid1,
+    register1,
+    error1,
+    type2,
+    isInvalid2,
+    register2,
+    error2,
+    type3,
+    isInvalid3,
+    register3,
+    error3,
+    type4,
+    isInvalid4,
+    register4,
+    error4,
+    type5,
+    isInvalid5,
+    register5,
+    error5,
+    type6,
+    isInvalid6,
+    register6,
+    error6,
+    type7,
+    isInvalid7,
+    register7,
+    error7,
+    value1,
+    value2,
+    value3,
+    value4,
+    value5,
+    value6,
+    value7,
+    onChange1,
+    onChange2,
+    onChange3,
+    onChange4,
+    onChange5,
+    onChange6,
+    onChange7,
+    name1,
+    name20,
+    name21,
+    name22,
+    name2,
+    name3,
+    name4,
+    name5,
+    name6,
+    name7,
+    name8,
+    name9,
+    type,
+    children,
+    type20,
+    value20,
+    error20,
+    isInvalid20,
+    register20,
+    onChange20,
+    type21,
+    value21,
+    error21,
+    isInvalid21,
+    register21,
+    onChange21,
+    type22,
+    value22,
+    error22,
+    isInvalid22,
+    register22,
+    onChange22,
+    onClick,
+}: CardCadastroInicialProps) {
+    return (
+        <Stack
+            bg={'#F7FAFC'}
+            borderRadius={'8px'}
+            align={'start'}
+            spacing={9}
+            mt={'9%'}
+            px={10}
+            py={9}
+            boxShadow={'0px 0px 32px 0px rgba(136, 152, 170, 0.15)'}
+        >
+            <FormAvaliacaoInput
+                label1={'Nome'}
+                placeholder1={'Digite Nome'}
+                label2={'Telefone'}
+                placeholder2={'Digite o Telefone'}
+                type1={type1}
+                type2={type2}
+                value1={value1}
+                value2={value2}
+                error1={error1}
+                error2={error2}
+                isInvalid1={isInvalid1}
+                isInvalid2={isInvalid2}
+                register1={register1}
+                register2={register2}
+                onChange1={onChange1}
+                onChange2={onChange2}
+                name1={name1}
+                name2={name2}
+            />
+            <Divider />
+
+            <FormOneInput
+                label={'Email'}
+                placeholder={'Digite o Email'}
+                type={type7}
+                value={value7}
+                error={error7}
+                isInvalid={isInvalid7}
+                register={register7}
+                onChange={onChange7}
+                name={name7}
+            />
+
+
+            {children}
+
+            <Stack w={'100%'} align={'end'}>
+                <ButtonAd text={'Salvar'} mt={'0'} type={type} onClick={onClick} />
+            </Stack>
+        </Stack>
+    );
+}
+
+
+export function CardCadastroEmpresaResponsavel({
+    type1,
+    isInvalid1,
+    register1,
+    error1,
+    type2,
+    isInvalid2,
+    register2,
+    error2,
+    type7,
+    isInvalid7,
+    register7,
+    error7,
+    value1,
+    value2,
+    value7,
+    onChange1,
+    onChange2,
+    onChange7,
+    name1,
+    name2,
+    name7,
+    type,
+    children,
+    onClick,
+}: CardCadastroInicialProps) {
+    return (
+        <Stack
+            bg={'#F7FAFC'}
+            borderRadius={'8px'}
+            align={'start'}
+            spacing={9}
+            mt={'9%'}
+            px={10}
+            py={9}
+            boxShadow={'0px 0px 32px 0px rgba(136, 152, 170, 0.15)'}
+        >
+            <FormAvaliacaoInput
+                label1={'Responsável Técnico'}
+                placeholder1={'Digite o Responsável Técnico'}
+                label2={'Habilitação'}
+                placeholder2={'Digite a Habilitação'}
+                type1={type1}
+                type2={type2}
+                value1={value1}
+                value2={value2}
+                error1={error1}
+                error2={error2}
+                isInvalid1={isInvalid1}
+                isInvalid2={isInvalid2}
+                register1={register1}
+                register2={register2}
+                onChange1={onChange1}
+                onChange2={onChange2}
+                name1={name1}
+                name2={name2}
+            />
+            <Divider />
+
+            <FormOneInput
+                label={'Registro'}
+                placeholder={'Digite o Registro'}
+                type={type7}
+                value={value7}
+                error={error7}
+                isInvalid={isInvalid7}
+                register={register7}
+                onChange={onChange7}
+                name={name7}
+            />
+
+
+            {children}
+
+            <Stack w={'100%'} align={'end'}>
+                <ButtonAd text={'Salvar'} mt={'0'} type={type} onClick={onClick} />
+            </Stack>
+        </Stack>
+    );
+}
+
+
+
 
 interface CardHistoricoProps {
     type1?: any;
