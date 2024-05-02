@@ -301,8 +301,8 @@ export async function updateEmpresa(
     bairro,
     telefone,
     setor,
-    unidadeName,
-    areaavaliadaName,
+    unidade,
+    area_avaliada,
     nome_gestor,
     telefone_gestor,
     email_gestor,
@@ -338,8 +338,8 @@ export async function updateEmpresa(
   }
 
   try {
-    const areasAvaliadasString = areaavaliadaName?.join(',');
-    const unidadesString = unidadeName?.join(',');
+    const areasAvaliadasString = Array.isArray(area_avaliada) ? area_avaliada?.join(',') : null;
+    const unidadesString = Array.isArray(unidade) ? unidade.join(',') : null;
 
     const response = await prisma.empresa.update({
       where: {
@@ -392,18 +392,21 @@ export async function updateEmpresa(
       },
     });
 
-       for (const unidadeSingle of unidadeName) {
-      const addAreaAvaliada = await prisma.areaavaliada.create({
-        data: {
-          nameAvaliada: unidadeSingle,
-          empresaId: response.id,
-        },
-      });
+    // Checar se unidadeName é uma array antes de tentar iterar sobre ela
+    if (Array.isArray(unidade)) {
+      for (const unidadeSingle of unidade) {
+        const addAreaAvaliada = await prisma.areaavaliada.create({
+          data: {
+            nameAvaliada: unidadeSingle,
+            empresaId: response.id,
+          },
+        });
+      }
     }
 
     //fazer o mesmo para o setor tbm pois uma empresa pode ter varios setores
-
-    for (const area of areaavaliadaName) {
+    if (Array.isArray(area_avaliada)) {
+    for (const area of area_avaliada) {
       const addUnidade = await prisma.unidade.create({
         data: {
           nameUnidade: area,
@@ -411,6 +414,7 @@ export async function updateEmpresa(
         },
       });
     }
+  }
 
     return res.status(201).json({
       empresaId: response.id,
