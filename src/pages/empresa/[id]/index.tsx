@@ -289,7 +289,7 @@ export default function Home() {
         } finally {
             setPublishing(false);
             toast.success("Empresa editada com sucesso!")
-            router.push(`/historico/${empresaId}/edit?historicoId=${historicoId}`);
+            router.push(`/empresa/${empresaId}/create_empresa_responsavel_edit`);
         }
     }
 
