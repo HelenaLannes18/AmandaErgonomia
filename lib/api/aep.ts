@@ -124,6 +124,7 @@ export async function createErgonomica(
     revisao_documento,
     jornada_trabalho,
     cargo,
+    setor,
     tipo_atividade,
     variacao_turno,
     trabalho_noturno,
@@ -154,6 +155,7 @@ export async function createErgonomica(
         revisao_documento: revisao_documento, // Usar o valor formatado
         jornada_trabalho: jornada_trabalho,
         cargo: cargo,
+        setor: setor,
         tipo_atividade: tipo_atividade,
         variacao_turno: variacao_turno,
         trabalho_noturno: trabalho_noturno,
@@ -266,6 +268,7 @@ export async function updateErgonomica(
 
   const {
     data_elaboracao,
+    setor,
     revisao_documento,
     jornada_trabalho,
     cargo,
@@ -297,6 +300,7 @@ export async function updateErgonomica(
         tipo_atividade: tipo_atividade,
         variacao_turno: variacao_turno,
         trabalho_noturno: trabalho_noturno,
+        setor: setor,
         //@ts-ignore
         descricao_ambiente_trab: descricao_ambiente_trab,
         numero_trabalhadores_expostos: numero_trabalhadores_expostos,

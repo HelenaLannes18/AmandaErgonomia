@@ -414,6 +414,87 @@ export function FormAvaliacaoInput({ label1, type1, placeholder1, label2, type2,
 }
 
 
+
+export function FormAvaliacaoInputDate({ label, placeholder, type, name, value, error, register, isInvalid, onChange, defaultValue, label2, placeholder2, type2, name2, value2, error2, register2, isInvalid2, onChange2, defaultValue2 }: FormTextAreaProps) {
+
+    return (
+        <HStack
+            w={"100%"}
+            spacing={7}
+            align={"start"}
+        >
+            <FormControl
+                w={"50%"}
+                isInvalid={isInvalid}
+            >
+                <FormLabel
+                    color={"#525F7F"}
+                    fontWeight={700}
+                    fontSize={"16px"}
+                >
+                    {label}
+                </FormLabel>
+                <Input
+                    type={type}
+                    name={name}
+                    value={value}
+                    placeholder={placeholder}
+                    bg={"white"}
+                    borderRadius={"6px"}
+                    fontSize={"16px"}
+                    fontWeight={400}
+                    boxShadow={"0px 1px 3px 0px rgba(50, 50, 93, 0.15), 0px 0px 1px 0px rgba(0, 0, 0, 0.02)"}
+                    {...register}
+                    _placeholder={{
+                        color: "#8898AA",
+                    }}
+                    onChange={onChange}
+                    defaultValue={defaultValue}
+                />
+            </FormControl>
+            {error && (
+                <span style={{ color: "red" }}>{error}</span>
+            )}
+
+            <FormControl
+                w={"50%"}
+                isInvalid={isInvalid2}
+            >
+                <FormLabel
+                    color={"#525F7F"}
+                    fontWeight={700}
+                    fontSize={"16px"}
+                >
+                    {label2}
+                </FormLabel>
+                <Input
+                    type={type2}
+                    name={name2}
+                    value={value2}
+                    placeholder={placeholder2}
+                    bg={"white"}
+                    borderRadius={"6px"}
+                    fontSize={"16px"}
+                    fontWeight={400}
+                    boxShadow={"0px 1px 3px 0px rgba(50, 50, 93, 0.15), 0px 0px 1px 0px rgba(0, 0, 0, 0.02)"}
+                    {...register2}
+                    _placeholder={{
+                        color: "#8898AA",
+                    }}
+                    onChange={onChange2}
+                    defaultValue={defaultValue2}
+                />
+            </FormControl>
+            {error2 && (
+                <span style={{ color: "red" }}>{error2}</span>
+            )}
+        </HStack>
+
+    )
+}
+
+
+
 export function FormAvaliacaoMulti({ label1, label2, type2, placeholder2, isInvalid1, isInvalid2, value2, error1, error2, register2, onChange2, name2, isLoading, onChangeSelect, handleCreate, options, valueSelect }: FormAvaliacaoInputProps) {
 
     return (
@@ -685,6 +766,16 @@ interface FormTextAreaProps {
     isInvalid?: any
     register?: UseFormRegisterReturn
     defaultValue?: any
+    label2?: string
+    placeholder2?: string
+    type2?: any
+    onChange2?: any
+    name2?: any
+    value2?: any
+    error2?: any
+    isInvalid2?: any
+    register2?: UseFormRegisterReturn
+    defaultValue2?: any
 }
 
 interface FormThreeInputProps {
@@ -935,13 +1026,14 @@ export function FormTextDateInput({ label, placeholder, type, name, value, error
     )
 }
 
-
 interface FormVariavelProps {
-    label: string
-    placeholder: string
+    label?: string
+    placeholder?: string
     label2: string
+    label3?: string
     children?: ReactNode
     setValue2?: any
+    setValue3?: any
     valueRadio?: any
     isInvalid?: any
     type?: any
@@ -951,8 +1043,11 @@ interface FormVariavelProps {
     name?: any
     value?: any
     handleRadioClick?: any
+    handleRadioClick2?: any
     handleRadioChange?: any
+    handleRadioChange2?: any
     selectedRadioValue?: any
+    selectedRadioValue2?: any
 }
 
 export function FormVariavel({ label, placeholder, label2, children, setValue2, register, error, onChange, type, isInvalid, name, value, handleRadioClick, handleRadioChange }: FormVariavelProps) {
@@ -1132,6 +1227,62 @@ export function FormVariavel3({ label, placeholder, label2, children, register, 
             {error && (
                 <span style={{ color: "red" }}>{error}</span>
             )}
+            <FormControl
+                w={"50%"}
+            >
+                <FormLabel
+                    color={"#525F7F"}
+                    fontWeight={700}
+                    fontSize={"16px"}
+                >
+                    {label2}
+                </FormLabel>
+                <RadioGroup value={selectedRadioValue} onChange={handleRadioChange}>
+                    <Stack >
+                        <Radio value='true' onClick={handleRadioClick}>Sim</Radio>
+                        <Radio value='false' onClick={handleRadioClick}>Não</Radio>
+                        <Radio value='outros'>Outros</Radio>
+                        {children}
+                    </Stack>
+                </RadioGroup>
+
+
+            </FormControl>
+        </HStack>
+
+    )
+}
+
+export function FormVariavelInputMulti({ label2, children, handleRadioClick, handleRadioChange, selectedRadioValue, label3, handleRadioChange2, handleRadioClick2, selectedRadioValue2 }: FormVariavelProps) {
+
+    return (
+        <HStack
+            w={"100%"}
+            spacing={7}
+            align={"start"}
+        >
+
+            <FormControl
+                w={"50%"}
+            >
+                <FormLabel
+                    color={"#525F7F"}
+                    fontWeight={700}
+                    fontSize={"16px"}
+                >
+                    {label3}
+                </FormLabel>
+                <RadioGroup value={selectedRadioValue2} onChange={handleRadioChange2}>
+                    <Stack >
+                        <Radio value='true' onClick={handleRadioClick2}>Sim</Radio>
+                        <Radio value='false' onClick={handleRadioClick2}>Não</Radio>
+                        <Radio value='outros'>Outros</Radio>
+                        {children}
+                    </Stack>
+                </RadioGroup>
+
+
+            </FormControl>
             <FormControl
                 w={"50%"}
             >

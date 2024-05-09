@@ -52,7 +52,7 @@ export default function Home() {
 
             const responseData = await response.json();
             // Redireciona para a rota desejada com o id
-            router.push(`/empresa`);
+            router.push(`/painel-aep/create`);
 
             if (!response.ok) {
                 const error = await response.text()

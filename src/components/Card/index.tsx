@@ -18,6 +18,7 @@ import {
     FormAvaliacao,
     FormAvaliacaoInput,
     FormAvaliacaoInput2,
+    FormAvaliacaoInputDate,
     FormAvaliacaoInputThree,
     FormAvaliacaoMulti,
     FormLogin,
@@ -28,6 +29,7 @@ import {
     FormTextDateInput,
     FormVariavel,
     FormVariavel3,
+    FormVariavelInputMulti,
     FormVariavelNumber,
 } from '../Form';
 import { ButtonActions, ButtonAd, ButtonLogin } from '../Button';
@@ -1449,6 +1451,7 @@ export function CardPerfil({
 interface CardAvaliacaoProps {
     type1?: any;
     type2?: any;
+    selectedRadioValue3?: any;
     type3?: any;
     type4?: any;
     type5?: any;
@@ -1461,6 +1464,7 @@ interface CardAvaliacaoProps {
     type12?: any;
     type13?: any;
     type14?: any;
+    type15?: any;
     onChange1?: any;
     onChange2?: any;
     onChange3?: any;
@@ -1475,6 +1479,7 @@ interface CardAvaliacaoProps {
     onChange12?: any;
     onChange13?: any;
     onChange14?: any;
+    onChange15?: any;
     name1?: any;
     name2?: any;
     name3?: any;
@@ -1489,6 +1494,7 @@ interface CardAvaliacaoProps {
     name12?: any;
     name13?: any;
     name14?: any;
+    name15?: any;
     value1?: any;
     value2?: any;
     value3?: any;
@@ -1503,6 +1509,7 @@ interface CardAvaliacaoProps {
     value12?: any;
     value13?: any;
     value14?: any;
+    value15?: any;
     onClick?: any;
     isInvalid1?: any;
     isInvalid2?: any;
@@ -1518,6 +1525,7 @@ interface CardAvaliacaoProps {
     isInvalid12?: any;
     isInvalid13?: any;
     isInvalid14?: any;
+    isInvalid15?: any;
     error1?: any;
     error2?: any;
     error3?: any;
@@ -1532,6 +1540,7 @@ interface CardAvaliacaoProps {
     error12?: any;
     error13?: any;
     error14?: any;
+    error15?: any;
     register1?: any;
     register2?: any;
     register3?: any;
@@ -1546,6 +1555,7 @@ interface CardAvaliacaoProps {
     register12?: any;
     register13?: any;
     register14?: any;
+    register15?: any;
     type?: any;
     setValue?: any;
     value?: any;
@@ -1588,6 +1598,7 @@ interface CardAvaliacaoProps {
 }
 
 export function CardAvaliacao({
+    type15,
     type10,
     type11,
     type12,
@@ -1601,6 +1612,7 @@ export function CardAvaliacao({
     type7,
     type8,
     type9,
+    name15,
     name10,
     name11,
     name12,
@@ -1614,6 +1626,7 @@ export function CardAvaliacao({
     name7,
     name8,
     name9,
+    value15,
     value10,
     value11,
     value12,
@@ -1627,6 +1640,7 @@ export function CardAvaliacao({
     value7,
     value8,
     value9,
+    onChange15,
     onChange10,
     onChange11,
     onChange12,
@@ -1641,6 +1655,7 @@ export function CardAvaliacao({
     onChange8,
     onChange9,
     onClick,
+    isInvalid15,
     isInvalid10,
     isInvalid11,
     isInvalid12,
@@ -1654,6 +1669,7 @@ export function CardAvaliacao({
     isInvalid7,
     isInvalid8,
     isInvalid9,
+    register15,
     register10,
     register11,
     register12,
@@ -1667,6 +1683,7 @@ export function CardAvaliacao({
     register7,
     register8,
     register9,
+    error15,
     error10,
     error11,
     error12,
@@ -1702,8 +1719,8 @@ export function CardAvaliacao({
     setValue3,
     handleRadioClick3,
     selectedRadioValue,
-    selectedRadioValue2,
-    handleRadioChange2,
+    selectedRadioValue3,
+    handleRadioChange3,
     isLoading,
     onChangeSelect,
     handleCreate,
@@ -1776,7 +1793,7 @@ export function CardAvaliacao({
                 </HStack>
             </Stack>
 
-            <FormTextDateInput
+            {/* <FormTextDateInput
                 label={'Data de Elaboração'}
                 placeholder={'Digite a Data de Elaboração'}
                 type={type2}
@@ -1803,13 +1820,36 @@ export function CardAvaliacao({
                 register={register3}
                 error={error3}
                 defaultValue={defaultValue2}
+            /> */}
+
+            <FormAvaliacaoInputDate
+                label={'Data de Elaboração'}
+                placeholder={'Digite a Data de Elaboração'}
+                type={type2}
+                name={name2}
+                onChange={onChange2}
+                value={value2}
+                error={error2}
+                register={register2}
+                isInvalid={isInvalid2}
+                defaultValue={defaultValue1}
+                label2={'Revisão do Documento'}
+                placeholder2={'Digite a Revisão do Documento'}
+                type2={type3}
+                name2={name3}
+                onChange2={onChange3}
+                value2={value3}
+                isInvalid2={isInvalid3}
+                register2={register3}
+                error2={error3}
+                defaultValue2={defaultValue2}
             />
 
             <FormAvaliacaoInput
-                label1={'Cargo/Função'}
-                placeholder1={'Digite o Cargo/Função'}
-                label2={'Tipo de Atividade'}
-                placeholder2={'Digite o Tipo de Atividade'}
+                label1={'Setor'}
+                placeholder1={'Digite o Setor'}
+                label2={'Cargo/Função'}
+                placeholder2={'Digite o Cargo/Função'}
                 type1={type4}
                 name1={name4}
                 onChange1={onChange4}
@@ -1826,7 +1866,42 @@ export function CardAvaliacao({
                 error2={error5}
             />
 
-            <FormVariavel3
+            <FormAvaliacaoInput
+                label1={'Tipo de Atividade'}
+                placeholder1={'Digite o Tipo de Atividade'}
+                label2={'Jornada de Trabalho'}
+                placeholder2={'Digite a Jornada de Trabalho'}
+                type1={type6}
+                name1={name6}
+                onChange1={onChange6}
+                value1={value6}
+                isInvalid1={isInvalid6}
+                register1={register6}
+                error1={error6}
+                type2={type7}
+                name2={name7}
+                onChange2={onChange7}
+                value2={value7}
+                isInvalid2={isInvalid7}
+                register2={register7}
+                error2={error7}
+            />
+
+            <FormVariavelInputMulti
+                label2={'Variação de Turno'}
+                handleRadioClick={handleRadioClick}
+                selectedRadioValue={selectedRadioValue}
+                handleRadioChange={handleRadioChange}
+                label3={'Trabalho Noturno'}
+                handleRadioClick2={handleRadioClick3}
+                selectedRadioValue2={selectedRadioValue3}
+                handleRadioChange2={handleRadioChange3}
+
+                setValue2={setValue2}
+                setValue3={setValue3}
+            />
+
+            {/* <FormVariavel3
                 label={'Jornada de Trabalho'}
                 placeholder={'Digite a Jornada de Trabalho'}
                 label2={'Variação de Turno'}
@@ -1841,9 +1916,9 @@ export function CardAvaliacao({
                 error={error6}
                 selectedRadioValue={selectedRadioValue}
                 handleRadioChange={handleRadioChange}
-            ></FormVariavel3>
+            ></FormVariavel3> */}
 
-            <FormVariavelNumber
+            {/* <FormVariavelNumber
                 label={'Número de Trabalhadores Expostos'}
                 placeholder={'Digite o Número de Trabalhadores Expostos'}
                 label2={'Trabalho Noturno'}
@@ -1858,18 +1933,30 @@ export function CardAvaliacao({
                 error={error7}
                 selectedRadioValue={selectedRadioValue2}
                 handleRadioChange={handleRadioChange2}
-            ></FormVariavelNumber>
+            ></FormVariavelNumber> */}
+
+            <FormOneInput
+                label={'Número de Trabalhadores Expoostos'}
+                placeholder={'Digite o Número de Trabalhadores Expoostos'}
+                type={type9}
+                name={name9}
+                onChange={onChange9}
+                value={value9}
+                isInvalid={isInvalid9}
+                register={register9}
+                error={error9}
+            />
 
             <FormTextArea
                 label={'Descrição do Ambiente de Trabalho'}
                 placeholder={'Digite a Descrição do Ambiente de Trabalho'}
-                type={type8}
-                name={name8}
-                onChange={onChange8}
-                value={value8}
-                isInvalid={isInvalid8}
-                register={register8}
-                error={error8}
+                type={type10}
+                name={name10}
+                onChange={onChange10}
+                value={value10}
+                isInvalid={isInvalid10}
+                register={register10}
+                error={error10}
             />
 
             <FormAvaliacaoInput
@@ -1877,20 +1964,20 @@ export function CardAvaliacao({
                 placeholder1={'Digite a Tarefa Prescrita'}
                 label2={'Tarefa Real'}
                 placeholder2={'Digite a Tarefa Real'}
-                type1={type9}
-                name1={name9}
-                onChange1={onChange9}
-                value1={value9}
-                isInvalid1={isInvalid9}
-                register1={register9}
-                error1={error9}
-                type2={type10}
-                name2={name10}
-                onChange2={onChange10}
-                value2={value10}
-                isInvalid2={isInvalid10}
-                register2={register10}
-                error2={error10}
+                type1={type11}
+                name1={name11}
+                onChange1={onChange11}
+                value1={value11}
+                isInvalid1={isInvalid11}
+                register1={register11}
+                error1={error11}
+                type2={type12}
+                name2={name12}
+                onChange2={onChange12}
+                value2={value12}
+                isInvalid2={isInvalid12}
+                register2={register12}
+                error2={error12}
             />
 
             <Divider />
@@ -1898,30 +1985,6 @@ export function CardAvaliacao({
             <FormTextArea
                 label={'Considerações'}
                 placeholder={'Digite a Considerações'}
-                type={type11}
-                name={name11}
-                onChange={onChange11}
-                value={value11}
-                isInvalid={isInvalid11}
-                register={register11}
-                error={error11}
-            />
-
-            {/* <FormTextArea
-                label={'Tipo de Atividade'}
-                placeholder={'Digite o Tipo de Atividade'}
-                type={type12}
-                name={name12}
-                onChange={onChange12}
-                value={value12}
-                isInvalid={isInvalid12}
-                register={register12}
-                error={error12}
-            /> */}
-
-            <FormTextArea
-                label={'Posto de Trabalho'}
-                placeholder={'Digite o Posto de Trabalho'}
                 type={type13}
                 name={name13}
                 onChange={onChange13}
@@ -1931,9 +1994,10 @@ export function CardAvaliacao({
                 error={error13}
             />
 
-            <FormOneInput
-                label={'Ergonomista Responsável'}
-                placeholder={'Digite o Nome do(a) Ergonomista Responsável'}
+
+            <FormTextArea
+                label={'Posto de Trabalho'}
+                placeholder={'Digite o Posto de Trabalho'}
                 type={type14}
                 name={name14}
                 onChange={onChange14}
@@ -1943,6 +2007,17 @@ export function CardAvaliacao({
                 error={error14}
             />
 
+            <FormOneInput
+                label={'Ergonomista Responsável'}
+                placeholder={'Digite o Nome do(a) Ergonomista Responsável'}
+                type={type15}
+                name={name15}
+                onChange={onChange15}
+                value={value15}
+                isInvalid={isInvalid15}
+                register={register15}
+                error={error15}
+            />
             <Stack w={'100%'} align={'end'}>
                 <ButtonAd text={'Salvar'} mt={'0'} type={type} onClick={onClick} />
             </Stack>

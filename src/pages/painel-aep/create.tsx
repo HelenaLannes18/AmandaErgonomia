@@ -14,16 +14,16 @@ import { fetcher } from "../../lib/fetcher"
 import useSWR, { mutate } from "swr";
 
 const formSchema = z.object({
-    name: z.string(),
     data_elaboracao: z.string(),
     revisao_documento: z.string(),
-    jornada_trabalho: z.string(),
+    setor: z.string(),
     cargo: z.string(),
     tipo_atividade: z.string(),
+    jornada_trabalho: z.string(),
     variacao_turno: z.string(),
     trabalho_noturno: z.string(),
-    descricao_ambiente_trabalho: z.string(),
     numero_trabalhadores_expostos: z.any(),
+    descricao_ambiente_trabalho: z.string(),
     tarefa_prescrita: z.string(),
     tarefa_real: z.string(),
     consideracoes_avaliador: z.string(),
@@ -31,6 +31,7 @@ const formSchema = z.object({
     ergonomista_responsavel: z.string(),
     areaavaliadaName: z.string(),
     unidadeName: z.string(),
+    name: z.string(),
 })
 
 interface EmpresaData {
@@ -54,7 +55,7 @@ interface EmpresaData {
     ergonomista: string;
     ie: string;
     cep: string;
-    setor: string;
+    // setor: string;
     endereco: string;
     bairro: string;
     telefone: string;
@@ -128,6 +129,7 @@ export default function AvaliacaoPreliminar() {
             revisao_documento: "",
             jornada_trabalho: "",
             cargo: "",
+            setor: "",
             tipo_atividade: "",
             variacao_turno: "",
             trabalho_noturno: "",
@@ -250,6 +252,7 @@ export default function AvaliacaoPreliminar() {
                     revisao_documento: revisaoDocumentoFormatado,
                     jornada_trabalho: values.jornada_trabalho,
                     cargo: values.cargo,
+                    setor: values.setor,
                     tipo_atividade: values.tipo_atividade,
                     variacao_turno: selectedRadioValue,
                     trabalho_noturno: selectedRadioValue3,
@@ -299,56 +302,61 @@ export default function AvaliacaoPreliminar() {
                     register3={register("revisao_documento")}
                     error3={formState.errors.revisao_documento?.message}
 
-                    type4={"cargo"}
-                    isInvalid4={!!formState.errors.cargo}
-                    register4={register("cargo")}
-                    error4={formState.errors.cargo?.message}
+                    type4={"setor"}
+                    isInvalid4={!!formState.errors.setor}
+                    register4={register("setor")}
+                    error4={formState.errors.setor?.message}
 
-                    type5={"tipo_atividade"}
-                    isInvalid5={!!formState.errors.tipo_atividade}
-                    register5={register("tipo_atividade")}
-                    error5={formState.errors.tipo_atividade?.message}
+                    type5={"cargo"}
+                    isInvalid5={!!formState.errors.cargo}
+                    register5={register("cargo")}
+                    error5={formState.errors.cargo?.message}
 
-                    type6={"jornada_trabalho"}
-                    isInvalid6={!!formState.errors.jornada_trabalho}
-                    register6={register("jornada_trabalho")}
-                    error6={formState.errors.jornada_trabalho?.message}
+                    type6={"tipo_atividade"}
+                    isInvalid6={!!formState.errors.tipo_atividade}
+                    register6={register("tipo_atividade")}
+                    error6={formState.errors.tipo_atividade?.message}
 
-                    type7={"numero_trabalhadores_expostos"}
-                    isInvalid7={!!formState.errors.numero_trabalhadores_expostos}
-                    register7={register("numero_trabalhadores_expostos")}
-                    error7={formState.errors.numero_trabalhadores_expostos?.message}
+                    type7={"jornada_trabalho"}
+                    isInvalid7={!!formState.errors.jornada_trabalho}
+                    register7={register("jornada_trabalho")}
+                    error7={formState.errors.jornada_trabalho?.message}
 
-                    type8={"descricao_ambiente_trabalho"}
-                    isInvalid8={!!formState.errors.descricao_ambiente_trabalho}
-                    register8={register("descricao_ambiente_trabalho")}
-                    error8={formState.errors.descricao_ambiente_trabalho?.message}
+                    type9={"numero_trabalhadores_expostos"}
+                    isInvalid9={!!formState.errors.numero_trabalhadores_expostos}
+                    register9={register("numero_trabalhadores_expostos")}
+                    error9={formState.errors.numero_trabalhadores_expostos?.message}
 
-                    type9={"tarefa_prescrita"}
-                    isInvalid9={!!formState.errors.tarefa_prescrita}
-                    register9={register("tarefa_prescrita")}
-                    error9={formState.errors.tarefa_prescrita?.message}
+                    type10={"descricao_ambiente_trabalho"}
+                    isInvalid10={!!formState.errors.descricao_ambiente_trabalho}
+                    register10={register("descricao_ambiente_trabalho")}
+                    error10={formState.errors.descricao_ambiente_trabalho?.message}
 
-                    type10={"tarefa_real"}
-                    isInvalid10={!!formState.errors.tarefa_real}
-                    register10={register("tarefa_real")}
-                    error10={formState.errors.tarefa_real?.message}
+                    type11={"tarefa_prescrita"}
+                    isInvalid11={!!formState.errors.tarefa_prescrita}
+                    register11={register("tarefa_prescrita")}
+                    error11={formState.errors.tarefa_prescrita?.message}
 
-                    type11={"consideracoes_avaliador"}
-                    isInvalid11={!!formState.errors.consideracoes_avaliador}
-                    register11={register("consideracoes_avaliador")}
-                    error11={formState.errors.consideracoes_avaliador?.message}
+                    type12={"tarefa_real"}
+                    isInvalid12={!!formState.errors.tarefa_real}
+                    register12={register("tarefa_real")}
+                    error12={formState.errors.tarefa_real?.message}
+
+                    type13={"consideracoes_avaliador"}
+                    isInvalid13={!!formState.errors.consideracoes_avaliador}
+                    register13={register("consideracoes_avaliador")}
+                    error13={formState.errors.consideracoes_avaliador?.message}
 
 
-                    type13={"posto_trabalho"}
-                    isInvalid13={!!formState.errors.posto_trabalho}
-                    register13={register("posto_trabalho")}
-                    error13={formState.errors.posto_trabalho?.message}
+                    type14={"posto_trabalho"}
+                    isInvalid14={!!formState.errors.posto_trabalho}
+                    register14={register("posto_trabalho")}
+                    error14={formState.errors.posto_trabalho?.message}
 
-                    type14={"ergonomista_responsavel"}
-                    isInvalid14={!!formState.errors.ergonomista_responsavel}
-                    register14={register("ergonomista_responsavel")}
-                    error14={formState.errors.ergonomista_responsavel?.message}
+                    type15={"ergonomista_responsavel"}
+                    isInvalid15={!!formState.errors.ergonomista_responsavel}
+                    register15={register("ergonomista_responsavel")}
+                    error15={formState.errors.ergonomista_responsavel?.message}
 
                     setValue={setValue}
                     value={value}

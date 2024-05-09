@@ -253,6 +253,7 @@ model Unidade {
 model Ergonomica {
   id                            String        @id @default(uuid())
   nameAEP                       String?
+  setor                         String?
   unidadeName                   String?
   areaavaliadaName              String?
   empresaId                     String?
