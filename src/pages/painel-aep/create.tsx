@@ -269,7 +269,7 @@ export default function AvaliacaoPreliminar() {
                 })
             });
             toast.success("AEP Cadastrado!");
-            router.back();
+            router.push("/painel-perigos/create");
             console.log(await response.json());
 
             if (!response.ok) {

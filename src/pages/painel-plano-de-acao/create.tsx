@@ -234,7 +234,7 @@ export default function PlanodeAcao() {
                 })
             })
             toast.success("Plano Cadastrado!")
-            router.back()
+            router.push("/empresa");
             console.log(response.json())
 
             if (!response.ok) {

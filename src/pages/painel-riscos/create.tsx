@@ -339,7 +339,7 @@ export default function ControleDosRiscos() {
                 })
             })
             toast.success("Risco Cadastrado!")
-            router.back()
+            router.push("/painel-plano-de-acao/create");
             // router.push('/painel-riscos')
             console.log(response.json())
 

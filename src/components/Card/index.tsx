@@ -1746,29 +1746,29 @@ export function CardAvaliacao({
             py={9}
             boxShadow={'0px 0px 32px 0px rgba(136, 152, 170, 0.15)'}
         >
-            <Stack w={'100%'} spacing={7}>
-                <FormControl w={'100%'} isInvalid={isInvalidEmpresa}>
-                    <FormLabel color={'#525F7F'} fontWeight={700} fontSize={'16px'}>
-                        {'Empresa'}
-                    </FormLabel>
-                    <SelectChackra
+            {/* <Stack w={'100%'} spacing={7}> */}
+            {/* <FormControl w={'100%'} isInvalid={isInvalidEmpresa}> */}
+            {/* <FormLabel color={'#525F7F'} fontWeight={700} fontSize={'16px'}> */}
+            {/* {'Empresa'} */}
+            {/* </FormLabel> */}
+            {/* <SelectChackra
                         {...registerEmpresa}
                         value={valueEmpresa}
                         onChange={onChangeEmpresa}
-                    >
-                        <option value="" disabled>
+                    > */}
+            {/* <option value="" disabled>
                             Selecione uma empresa
-                        </option>
-                        {/* @ts-ignore */}
-                        {empresaOptions.map((option, index) => (
+                        </option> */}
+            {/* @ts-ignore */}
+            {/* {empresaOptions.map((option, index) => (
                             <option key={index} value={option.id}>
                                 {option.name}
                             </option>
-                        ))}
-                    </SelectChackra>
-                </FormControl>
-                <HStack w={'100%'} spacing={7} align={'start'}>
-                    <FormControl w={'50%'} isInvalid={isInvalidUnidade}>
+                        ))} */}
+            {/* </SelectChackra> */}
+            {/* </FormControl> */}
+            {/* <HStack w={'100%'} spacing={7} align={'start'}> */}
+            {/* <FormControl w={'50%'} isInvalid={isInvalidUnidade}>
                         <FormMultiSelect
                             label={'Unidade'}
                             placeholder={'Digite a Unidade'}
@@ -1778,8 +1778,8 @@ export function CardAvaliacao({
                             options={options2}
                             valueSelect={valueSelect2}
                         />
-                    </FormControl>
-                    <FormControl w={'50%'} isInvalid={isInvalidArea}>
+                    </FormControl> */}
+            {/* <FormControl w={'50%'} isInvalid={isInvalidArea}>
                         <FormMultiSelect
                             label={'Área Avaliada'}
                             placeholder={'Digite a Área Avaliada'}
@@ -1789,9 +1789,9 @@ export function CardAvaliacao({
                             options={options}
                             valueSelect={valueSelect}
                         />
-                    </FormControl>
-                </HStack>
-            </Stack>
+                    </FormControl> */}
+            {/* </HStack>
+            </Stack> */}
 
             {/* <FormTextDateInput
                 label={'Data de Elaboração'}
@@ -2253,28 +2253,28 @@ export function CardControleDosRiscos({
             py={9}
             boxShadow={'0px 0px 32px 0px rgba(136, 152, 170, 0.15)'}
         >
-            <Stack w={'100%'} spacing={7}>
+            {/* <Stack w={'100%'} spacing={7}>
                 <FormControl w={'100%'} isInvalid={isInvalidEmpresa}>
                     <FormLabel color={'#525F7F'} fontWeight={700} fontSize={'16px'}>
                         {'Empresa'}
-                    </FormLabel>
-                    <SelectChackra
+                    </FormLabel> */}
+            {/* <SelectChackra
                         {...registerEmpresa}
                         value={valueEmpresa}
                         onChange={onChangeEmpresa}
-                    >
-                        <option value="" disabled>
+                    > */}
+            {/* <option value="" disabled>
                             Selecione uma empresa
-                        </option>
-                        {/* @ts-ignore */}
-                        {empresaOptions.map((option, index) => (
+                        </option> */}
+            {/* @ts-ignore */}
+            {/* {empresaOptions.map((option, index) => (
                             <option key={index} value={option.id}>
                                 {option.name}
                             </option>
                         ))}
                     </SelectChackra>
-                </FormControl>
-                <HStack w={'100%'} spacing={7} align={'start'}>
+                </FormControl> */}
+            {/* <HStack w={'100%'} spacing={7} align={'start'}>
                     <FormControl w={'50%'} isInvalid={isInvalidUnidade}>
                         <FormMultiSelect
                             label={'Unidade'}
@@ -2298,7 +2298,7 @@ export function CardControleDosRiscos({
                         />
                     </FormControl>
                 </HStack>
-            </Stack>
+            </Stack> */}
 
             <FormVariavel
                 label={'Sugestão de Recomendação'}
@@ -2642,33 +2642,33 @@ export function CardIdentificacaoDePerigos({
             py={9}
             boxShadow={'0px 0px 32px 0px rgba(136, 152, 170, 0.15)'}
         >
-            <Stack w={'100%'} spacing={7}>
-                <FormControl w={'100%'} isInvalid={isInvalidEmpresa}>
-                    <FormLabel color={'#525F7F'} fontWeight={700} fontSize={'16px'}>
+            {/* <Stack w={'100%'} spacing={7}>
+                <FormControl w={'100%'} isInvalid={isInvalidEmpresa}> */}
+            {/* <FormLabel color={'#525F7F'} fontWeight={700} fontSize={'16px'}>
                         {'Empresa'}
-                    </FormLabel>
+                    </FormLabel> */}
 
-                    <SelectChackra
+            {/* <SelectChackra
                         {...registerEmpresa}
                         // value={valueEmpresa}
                         value={valueEmpresa}
                         onChange={onChangeEmpresa}
-                    >
-                        <option value="" disabled>
+                    > */}
+            {/* <option value="" disabled>
                             Selecione uma empresa
-                        </option>
-                        {/* @ts-ignore */}
-                        {empresaOptions.map((option, index) => (
+                        </option> */}
+            {/* @ts-ignore */}
+            {/* {empresaOptions.map((option, index) => (
                             <option key={index} value={option.id}>
                                 {option.name}
                             </option>
-                        ))}
+                        ))} */}
 
-
+            {/* 
                     </SelectChackra>
 
-                </FormControl>
-                <HStack w={'100%'} spacing={7} align={'start'}>
+                </FormControl> */}
+            {/* <HStack w={'100%'} spacing={7} align={'start'}>
                     <FormControl w={'50%'} isInvalid={isInvalidUnidade}>
 
                         <FormMultiSelect
@@ -2694,7 +2694,7 @@ export function CardIdentificacaoDePerigos({
                         />
                     </FormControl>
                 </HStack>
-            </Stack>
+            </Stack> */}
 
             <FormRadio2
                 label1={'Fase do Levantamento Preliminar de Perigo'}
@@ -3253,7 +3253,7 @@ export function CardPlanodeAcao({
             py={9}
             boxShadow={'0px 0px 32px 0px rgba(136, 152, 170, 0.15)'}
         >
-            <Stack w={'100%'} spacing={7}>
+            {/* <Stack w={'100%'} spacing={7}>
                 <FormControl w={'100%'} isInvalid={isInvalidEmpresa}>
                     <FormLabel color={'#525F7F'} fontWeight={700} fontSize={'16px'}>
                         {'Empresa'}
@@ -3262,19 +3262,19 @@ export function CardPlanodeAcao({
                         {...registerEmpresa}
                         value={valueEmpresa}
                         onChange={onChangeEmpresa}
-                    >
-                        <option value="" disabled>
+                    > */}
+            {/* <option value="" disabled>
                             Selecione uma empresa
-                        </option>
-                        {/* @ts-ignore */}
-                        {empresaOptions.map((option, index) => (
+                        </option> */}
+            {/* @ts-ignore */}
+            {/* {empresaOptions.map((option, index) => (
                             <option key={index} value={option.id}>
                                 {option.name}
                             </option>
-                        ))}
-                    </SelectChackra>
-                </FormControl>
-                <HStack w={'100%'} spacing={7} align={'start'}>
+                        ))} */}
+            {/* </SelectChackra> */}
+            {/* </FormControl> */}
+            {/* <HStack w={'100%'} spacing={7} align={'start'}>
                     <FormControl w={'50%'} isInvalid={isInvalidUnidade}>
                         <FormMultiSelect
                             label={'Unidade'}
@@ -3299,7 +3299,7 @@ export function CardPlanodeAcao({
 
                     </FormControl>
                 </HStack>
-            </Stack>
+            </Stack> */}
 
             <FormAvaliacao
                 label1={'O que fazer?'}
